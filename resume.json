@@ -3,6 +3,7 @@
   "basics": {
     "name": "Stanislav Natalenko",
     "label": "CTO at BanQu Inc.",
+    "image": "https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=400&d=mp",
     "email": "lychee.judge.1b@icloud.com",
     "url": "https://natalenko.com",
     "summary": "Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.",
@@ -22,9 +23,10 @@
   "work": [
     {
       "name": "BanQu",
+      "description": "Supply-chain transparency platform built on distributed-ledger technology, serving global enterprise customers",
       "url": "https://banqu.co",
       "location": "Minneapolis, MN · Remote",
-      "position": "CTO, VP Engineering, Chief Architect",
+      "position": "CTO, VP Engineering, Architect",
       "startDate": "2015-06",
       "highlights": [
         "Lead a distributed team of senior engineers and QA specialists across multiple geographies, owning architecture, product direction, and delivery.",
@@ -34,9 +36,10 @@
     },
     {
       "name": "API Nation",
+      "description": "Workflow automation and data-integration platform connecting business tools across the real estate industry.",
       "url": "https://apination.com",
       "location": "San Diego, CA · Remote",
-      "position": "Independent Contributor",
+      "position": "Consulting Software Architect",
       "startDate": "2015-05",
       "endDate": "2016-08",
       "highlights": [
@@ -45,14 +48,16 @@
     },
     {
       "name": "SpiderSuite",
-      "location": "Kharkiv, Ukraine",
+      "description": "Enterprise cloud and mobile inspection management platform for the commercial real estate industry, connecting banks, lenders, servicers, inspection companies, and field inspectors",
+      "location": "Minneapolis, MN · Remote",
       "position": "Co-founder and CTO",
       "startDate": "2012-02",
       "endDate": "2017-06",
       "highlights": [
+        "Co-founded and grew the company from concept to a production platform serving the commercial real estate lending market.",
         "Led end-to-end creation of an enterprise product, from initial concept and architecture through production launch.",
         "Owned product UX, designing the majority of user-facing interfaces with a strong focus on usability and clarity.",
-        "Architected and implemented a scalable, message-driven platform using CQRS and API-first design.",
+        "Architected and implemented a scalable, message-driven platform following DDD, CQRS, and API-first principles.",
         "Designed and built a responsive single-page web application with reliable offline and online operation.",
         "Delivered a production-ready iOS application integrated with the core platform in under three months.",
         "Established and enforced company-wide information security, disaster recovery, and business continuity standards.",
@@ -61,18 +66,21 @@
     },
     {
       "name": "SPS Commerce",
-      "url": "https://www.spscommerce.com",
+      "description": "Cloud-based supply-chain management software for retailers, suppliers, third-party logistics providers, and partners",
+      "url": "https://spscommerce.com",
       "location": "Kharkiv, Ukraine",
       "position": "Product Lead and Scrum Master",
       "startDate": "2011-05",
       "endDate": "2012-09",
       "highlights": [
-        "Led product team integration into SPS Commerce post-acquisition, maintaining release cadence and customer commitments."
+        "Led development of the SPSC Universal Data Adapter, a turnkey integration product for exchanging data with a variety of ERP systems.",
+        "Facilitated the merge of Direct EDI and SPS Commerce engineering teams post-acquisition, transitioning SPSC product development to the Ukraine office and rolling out Agile Scrum across the merged team."
       ]
     },
     {
       "name": "Direct EDI",
-      "description": "Acquired by SPS Commerce in May 2011",
+      "description": "E-commerce solutions for supply-chain network integration, ranging from web-based EDI to fully integrated enterprise systems. Acquired by SPS Commerce",
+      "url": "http://directedi.com",
       "location": "Kharkiv, Ukraine",
       "position": "Tech Lead and Software Architect",
       "startDate": "2008-06",
@@ -141,6 +149,82 @@
       "summary": "Patent EP4270864A1 (filed). Decentralized chain-of-custody for asset-anchored transactions, with geolocation-bound transactable credits recorded in a distributed ledger."
     }
   ],
+  "skills": [
+    {
+      "name": "Architecture",
+      "keywords": [
+        "Distributed Systems",
+        "Event Sourcing",
+        "CQRS",
+        "Domain-Driven Design",
+        "Microservices",
+        "API-first Design",
+        "REST API",
+        "Design Patterns",
+        "Test-Driven Development"
+      ]
+    },
+    {
+      "name": "Engineering Leadership",
+      "keywords": [
+        "Engineering Management",
+        "Team Building & Hiring",
+        "Mentoring",
+        "Agile / Scrum",
+        "Cross-functional Collaboration",
+        "Product Strategy",
+        "Stakeholder Management"
+      ]
+    },
+    {
+      "name": "Infrastructure",
+      "keywords": [
+        "Docker",
+        "Terraform",
+        "Vault",
+        "Consul",
+        "AWS",
+        "Microsoft Azure",
+        "RabbitMQ",
+        "OpenTelemetry",
+        "Kibana"
+      ]
+    },
+    {
+      "name": "Databases",
+      "keywords": [
+        "MongoDB",
+        "MS SQL",
+        "PostgreSQL",
+        "SQLite",
+        "Redis",
+        "Elastic Search"
+      ]
+    },
+    {
+      "name": "Web & Mobile Development",
+      "keywords": [
+        "TypeScript",
+        "JavaScript",
+        "Node.js",
+        "React",
+        "Single-Page Applications",
+        "Responsive / Mobile Web",
+        "iOS (Objective-C)",
+        "UX Design",
+        ".NET",
+        "C#"
+      ]
+    },
+    {
+      "name": "Distributed Ledger",
+      "keywords": [
+        "Ethereum",
+        "Smart Contracts",
+        "Distributed Ledger Technology"
+      ]
+    }
+  ],
   "languages": [
     {
       "language": "English",
@@ -157,108 +241,42 @@
   ],
   "projects": [
     {
-      "name": "banqu.app",
-      "description": "A modern web application for managing decentralized identity and transactions",
-      "url": "https://banqu.app",
-      "roles": ["Architect", "Lead Developer"],
-      "keywords": ["React", "NodeJS", "Ethereum"]
-    },
-    {
       "name": "node-cqrs",
       "description": "CQRS/Event Sourcing toolkit for Node.js with DI, sagas, projections, and optional common stack adapters",
-      "url": "https://snatalenko.github.io/node-cqrs",
-      "roles": ["Author"],
-      "type": "Open Source",
-      "keywords": ["CQRS", "Event-Sourcing", "TypeScript", "SQLite", "MongoDB", "RabbitMQ", "Redis", "OpenTelemetry", "Worker Threads"]
+      "url": "https://natalenko.com/node-cqrs/",
+      "keywords": [
+        "CQRS",
+        "Event-Sourcing",
+        "TypeScript",
+        "SQLite",
+        "MongoDB",
+        "RabbitMQ",
+        "Redis",
+        "OpenTelemetry",
+        "Worker Threads"
+      ],
+      "startDate": "2015-03"
     },
     {
-      "name": "declarative-mapper",
-      "description": "Declarative JSON data transformation and object mapping library for JS/TS with safe VM execution",
-      "url": "https://github.com/snatalenko/declarative-mapper",
-      "roles": ["Author"],
-      "type": "Open Source",
-      "keywords": ["Mapping", "Transformations", "TypeScript"]
+      "name": "morphos",
+      "description": "JSON-to-JSON mapper with user-defined JSON mapping specs, plain JS transformation expressions, and secure VM execution",
+      "url": "https://natalenko.com/morphos/",
+      "keywords": [
+        "Mapping",
+        "Transformations",
+        "TypeScript"
+      ],
+      "startDate": "2016-05"
     },
     {
       "name": "di0",
       "description": "Lightweight dependency injection container for TS/ES6 classes",
-      "url": "https://github.com/snatalenko/di0",
-      "roles": ["Author"],
-      "type": "Open Source",
-      "keywords": ["Dependency-Injection", "TypeScript"]
-    },
-    {
-      "name": "Inspection Management System",
-      "description": "SpiderSuite IMS is an inspection management solution for the commercial real estate industry. The distributed cloud platform handles more than 500,000 requests daily from the web application, mobile devices and integrated partners, while the average app load time doesn't exceed 0.5 second.",
-      "entity": "SpiderSuite",
-      "roles": ["Architect", "Lead Developer"],
-      "startDate": "2012-02",
-      "endDate": "2017-06",
-      "keywords": [".NET 4.5", "ASP.NET MVC 4", "Web API 2", "OData 4.0", "JavaScript", "BackboneJS", "MarionetteJS", "HTML5", "MongoDB", "RabbitMQ", "MassTransit", "AWS", "Microsoft Azure"]
-    },
-    {
-      "name": "SpiderSuite Inspections iOS App",
-      "description": "iOS application integrated with the SpiderSuite platform. Provides in-field interface for instant communication between customers, push notifications, driving directions and easy access to important inspection information.",
-      "entity": "SpiderSuite",
-      "roles": ["Architect", "Lead Developer"],
-      "startDate": "2012-02",
-      "endDate": "2017-06",
-      "keywords": ["Objective C"]
-    },
-    {
-      "name": "SPSC Universal Data Adapter",
-      "description": "Pre-built, user-friendly adapter aimed to seamlessly exchange data into and out of variety of ERP systems",
-      "entity": "SPS Commerce",
-      "roles": ["Product Lead", "Scrum Master"],
-      "startDate": "2011-07",
-      "endDate": "2012-09"
-    },
-    {
-      "name": "Billing Center",
-      "description": "Customer billing profiles; CC charging integration; monthly account statements; billing statistic; QB integration; etc.",
-      "entity": "DirectEDI",
-      "roles": ["Tech Lead", "Software Architect"],
-      "startDate": "2009-07",
-      "endDate": "2011-05"
-    },
-    {
-      "name": "EDI Compliance Testing System",
-      "entity": "DirectEDI",
-      "roles": ["Tech Lead", "Software Architect"],
-      "startDate": "2008-11",
-      "endDate": "2011-05"
-    },
-    {
-      "name": "Universal Hosted Translator 2.0",
-      "description": "SaaS data conversion and management for vendor community owners and larger vendors looking for a more scalable document exchange solution",
-      "entity": "DirectEDI",
-      "roles": ["Tech Lead", "Software Architect"],
-      "startDate": "2008-08",
-      "endDate": "2011-05"
-    },
-    {
-      "name": "Web EDI",
-      "description": "Turnkey document exchange solution offering almost instant compliance with the Electronic Data Interchange (EDI) standard",
-      "entity": "DirectEDI",
-      "roles": ["Tech Lead", "Software Architect"],
-      "startDate": "2010-01",
-      "endDate": "2011-08"
-    },
-    {
-      "name": "Enablement Portal and Community Insight",
-      "description": "A portal for self serving vendor Electronic Data Interchange (EDI) implementation and compliance, and a solution for vendor community owners to manage their vendors online",
-      "entity": "DirectEDI",
-      "roles": ["Tech Lead", "Software Architect"],
-      "startDate": "2010-11",
-      "endDate": "2011-06"
-    },
-    {
-      "name": "Direct Connect Management",
-      "description": "SaaS data conversion and management for vendor community owners and larger vendors looking for a more scalable document exchange solution",
-      "entity": "DirectEDI",
-      "roles": ["Tech Lead", "Software Architect"],
-      "startDate": "2009-10",
-      "endDate": "2009-12"
+      "url": "https://github.com/snatalenko/di0/",
+      "keywords": [
+        "Dependency-Injection",
+        "TypeScript"
+      ],
+      "startDate": "2019-12"
     }
   ]
 }

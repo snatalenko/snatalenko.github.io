@@ -3,339 +3,258 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stanislav Natalenko</title>
-<style>
-  :root {
-    --fg: #1a1a1a;
-    --muted: #666;
-    --accent: #2a5d8f;
-    --rule: #e5e5e5;
-    --bg: #fff;
-    --maxw: 780px;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
-  body {
-    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    padding: 48px 24px;
-  }
-  main { max-width: var(--maxw); margin: 0 auto; }
-  h1 { font-size: 28px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; }
-  h2 {
-    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--muted); margin: 36px 0 14px; padding-bottom: 6px;
-    border-bottom: 1px solid var(--rule);
-  }
-  h3 { font-size: 16px; font-weight: 600; margin: 0; }
-  h4 { font-size: 15px; font-weight: 600; margin: 0; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  p { margin: 4px 0; }
-  ul { margin: 6px 0 0; padding-left: 20px; }
-  li { margin: 3px 0; }
-
-  .header { display: flex; align-items: center; gap: 20px; margin-bottom: 4px; }
-  .header .header-text { flex: 1; min-width: 0; }
-  .header h1 { margin-bottom: 4px; }
-  .avatar {
-    width: 88px; height: 88px; border-radius: 50%; flex-shrink: 0;
-    object-fit: cover; background: var(--rule);
-  }
-  .label { color: var(--muted); margin: 0 0 10px; }
-  .summary { margin: 18px 0 0; font-size: 15px; line-height: 1.6; }
-  .contact { font-size: 14px; color: var(--muted); }
-  .contact a { color: var(--muted); }
-  .contact span + span::before { content: " · "; color: var(--rule); margin: 0 4px; }
-
-  .entry { margin: 0 0 18px; }
-  .entry:last-child { margin-bottom: 0; }
-  .entry-head {
-    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-    flex-wrap: wrap;
-  }
-  .entry-meta { font-size: 13px; color: var(--muted); white-space: nowrap; }
-  .entry-sub { color: var(--muted); font-size: 14px; margin: 2px 0 0; }
-  .entry-desc { margin-top: 6px; font-size: 14px; }
-  .entry-tags {
-    margin-top: 6px; font-size: 12px; color: var(--muted);
-  }
-  .entry-tags span { display: inline-block; margin-right: 6px; }
-
-  .position { margin: 10px 0 0; padding-left: 14px; border-left: 2px solid var(--rule); }
-  .position:first-of-type { margin-top: 8px; }
-  .position ul, .position li { font-size: 14px; }
-
-  .toggle {
-    display: inline-block; margin-top: 12px; padding: 0; border: 0; background: none;
-    color: var(--accent); font: inherit; font-size: 14px; cursor: pointer;
-  }
-  .toggle:hover { text-decoration: underline; }
-  .hidden { display: none; }
-  @media print { .toggle { display: none; } .hidden { display: block !important; } }
-
-  blockquote {
-    margin: 6px 0 0; padding: 0 0 0 14px; border-left: 2px solid var(--rule);
-    color: #333; font-size: 14px; white-space: pre-line;
-  }
-
-  @media print {
-    body { padding: 0; font-size: 11pt; }
-    h2 { margin-top: 18px; }
-    a { color: inherit; }
-  }
-</style>
+<title>Stanislav Natalenko — CTO at BanQu Inc.</title>
+<meta name="description" content="Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.">
+<meta name="author" content="Stanislav Natalenko">
+<link rel="canonical" href="https://natalenko.com/">
+<link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Stanislav Natalenko">
+<meta property="og:description" content="Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.">
+<meta property="og:url" content="https://natalenko.com/">
+<meta property="og:image" content="https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=400&amp;d=mp">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Stanislav Natalenko",
+  "url": "https://natalenko.com",
+  "image": "https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=400&d=mp",
+  "sameAs": [
+    "https://github.com/snatalenko",
+    "https://www.linkedin.com/in/snatalenko"
+  ],
+  "jobTitle": "CTO, VP Engineering, Architect",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "BanQu",
+    "url": "https://banqu.co"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Kharkiv National University of Radio Electronics"
+  },
+  "description": "Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation."
+}
+</script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main id="root">Loading…</main>
-<script>
-(async () => {
-  const root = document.getElementById('root');
-  let data;
-  try {
-    const res = await fetch('stanislav_natalenko.json', { cache: 'no-cache' });
-    if (!res.ok) throw new Error(res.statusText);
-    data = await res.json();
-  } catch (e) {
-    root.textContent = 'Failed to load stanislav_natalenko.json: ' + e.message;
-    return;
-  }
+<main>
 
-  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const fmtDate = (s) => {
-    if (!s) return '';
-    const [y, m] = s.split('-');
-    return m ? `${MONTHS[parseInt(m, 10) - 1]} ${y}` : y;
-  };
-  const range = (start, end) => {
-    const s = fmtDate(start), e = end ? fmtDate(end) : (start ? 'Present' : '');
-    return s && e ? `${s} – ${e}` : s || e;
-  };
+<header class="header">
+  <img class="avatar" src="https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=400&amp;d=mp" alt="Stanislav Natalenko" width="88" height="88">
+  <div class="header-text">
+    <h1>Stanislav Natalenko</h1>
+    <p class="label">CTO at BanQu Inc.</p>
+    <address class="contact"><span><a href="https://github.com/snatalenko" target="_blank" rel="noopener">GitHub: snatalenko</a></span><span><a href="https://www.linkedin.com/in/snatalenko" target="_blank" rel="noopener">LinkedIn: snatalenko</a></span></address>
+  </div>
+</header>
+<p class="summary">Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.</p>
+
+<section aria-labelledby="projects-h">
+  <h2 id="projects-h">Projects</h2>
+  
+<article class="entry">
+  <header class="entry-head">
+    <h3><a href="/node-cqrs/">node-cqrs</a></h3>
+    <div class="entry-meta"><time datetime="2015-03">Mar 2015</time> – Present</div>
+  </header>
+  
+  <p class="entry-desc">CQRS/Event Sourcing toolkit for Node.js with DI, sagas, projections, and optional common stack adapters</p>
+  <p class="entry-tags">CQRS · Event-Sourcing · TypeScript · SQLite · MongoDB · RabbitMQ · Redis · OpenTelemetry · Worker Threads</p>
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3><a href="/morphos/">morphos</a></h3>
+    <div class="entry-meta"><time datetime="2016-05">May 2016</time> – Present</div>
+  </header>
+  
+  <p class="entry-desc">JSON-to-JSON mapper with user-defined JSON mapping specs, plain JS transformation expressions, and secure VM execution</p>
+  <p class="entry-tags">Mapping · Transformations · TypeScript</p>
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3><a href="https://github.com/snatalenko/di0/" target="_blank" rel="noopener">di0</a></h3>
+    <div class="entry-meta"><time datetime="2019-12">Dec 2019</time> – Present</div>
+  </header>
+  
+  <p class="entry-desc">Lightweight dependency injection container for TS/ES6 classes</p>
+  <p class="entry-tags">Dependency-Injection · TypeScript</p>
+</article>
+  
+</section>
+
+<section aria-labelledby="experience-h">
+  <h2 id="experience-h">Experience</h2>
+  
+<article class="entry">
+  <header class="entry-head">
+    <h3>BanQu - CTO, VP Engineering, Architect</h3>
+    <div class="entry-meta"><time datetime="2015-06">Jun 2015</time> – Present<span class="duration" data-duration-start="2015-06"></span></div>
+  </header>
+  <div class="entry-sub"><a href="https://banqu.co" target="_blank" rel="noopener">banqu.co</a> · Minneapolis, MN · Remote<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
+      <p class="entry-desc">Supply-chain transparency platform built on distributed-ledger technology, serving global enterprise customers</p>
+<ul><li>Lead a distributed team of senior engineers and QA specialists across multiple geographies, owning architecture, product direction, and delivery.</li><li>Built and operate the event-sourced platform powering 10M+ supply-chain events across global enterprise customers.</li><li>Named inventor on three distributed-ledger patents underpinning the BanQu system.</li></ul>
+    </div></details></div>
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3>API Nation - Consulting Software Architect</h3>
+    <div class="entry-meta"><time datetime="2015-05">May 2015</time> – <time datetime="2016-08">Aug 2016</time><span class="duration" data-duration-start="2015-05" data-duration-end="2016-08"></span></div>
+  </header>
+  <div class="entry-sub"><a href="https://apination.com" target="_blank" rel="noopener">apination.com</a> · San Diego, CA · Remote<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
+      <p class="entry-desc">Workflow automation and data-integration platform connecting business tools across the real estate industry.</p>
+<ul><li>Architected and built the integration platform's processing core on AWS Lambda and RabbitMQ with a set of orchestrator services, enabling massively parallel, on-demand processing of large data volumes.</li></ul>
+    </div></details></div>
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3>SpiderSuite - Co-founder and CTO</h3>
+    <div class="entry-meta"><time datetime="2012-02">Feb 2012</time> – <time datetime="2017-06">Jun 2017</time><span class="duration" data-duration-start="2012-02" data-duration-end="2017-06"></span></div>
+  </header>
+  <div class="entry-sub">Minneapolis, MN · Remote<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
+      <p class="entry-desc">Enterprise cloud and mobile inspection management platform for the commercial real estate industry, connecting banks, lenders, servicers, inspection companies, and field inspectors</p>
+<ul><li>Co-founded and grew the company from concept to a production platform serving the commercial real estate lending market.</li><li>Led end-to-end creation of an enterprise product, from initial concept and architecture through production launch.</li><li>Owned product UX, designing the majority of user-facing interfaces with a strong focus on usability and clarity.</li><li>Architected and implemented a scalable, message-driven platform following DDD, CQRS, and API-first principles.</li><li>Designed and built a responsive single-page web application with reliable offline and online operation.</li><li>Delivered a production-ready iOS application integrated with the core platform in under three months.</li><li>Established and enforced company-wide information security, disaster recovery, and business continuity standards.</li><li>Implemented high-availability infrastructure with multi-cloud failover across Azure and AWS.</li></ul>
+    </div></details></div>
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3>SPS Commerce - Product Lead and Scrum Master</h3>
+    <div class="entry-meta"><time datetime="2011-05">May 2011</time> – <time datetime="2012-09">Sep 2012</time><span class="duration" data-duration-start="2011-05" data-duration-end="2012-09"></span></div>
+  </header>
+  <div class="entry-sub"><a href="https://spscommerce.com" target="_blank" rel="noopener">spscommerce.com</a> · Kharkiv, Ukraine<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
+      <p class="entry-desc">Cloud-based supply-chain management software for retailers, suppliers, third-party logistics providers, and partners</p>
+<ul><li>Led development of the SPSC Universal Data Adapter, a turnkey integration product for exchanging data with a variety of ERP systems.</li><li>Facilitated the merge of Direct EDI and SPS Commerce engineering teams post-acquisition, transitioning SPSC product development to the Ukraine office and rolling out Agile Scrum across the merged team.</li></ul>
+    </div></details></div>
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3>Direct EDI</h3>
+    <div class="entry-meta"><time datetime="2004-05">May 2004</time> – <time datetime="2011-05">May 2011</time><span class="duration" data-duration-start="2004-05" data-duration-end="2011-05"></span></div>
+  </header>
+  <div class="entry-sub"><a href="http://directedi.com" target="_blank" rel="noopener">directedi.com</a> · Kharkiv, Ukraine<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
+      <p class="entry-desc">E-commerce solutions for supply-chain network integration, ranging from web-based EDI to fully integrated enterprise systems. Acquired by SPS Commerce</p>
+
+      <div class="position">
+        <header class="entry-head">
+          <h4>Tech Lead and Software Architect</h4>
+          <div class="entry-meta"><time datetime="2008-06">Jun 2008</time> – <time datetime="2011-05">May 2011</time></div>
+        </header>
+        
+        <ul><li>Led or directly developed 5 of 7 core products, owning the full lifecycle from concept through launch and ongoing support.</li><li>Built, hired, and managed multiple cross-functional technology teams composed primarily of senior engineers, QA specialists, and UI designers.</li><li>Drove the transition from Waterfall to Agile Scrum across the entire technology organization.</li></ul>
+      </div>
+      <div class="position">
+        <header class="entry-head">
+          <h4>Project Coordinator</h4>
+          <div class="entry-meta"><time datetime="2007-10">Oct 2007</time> – <time datetime="2008-06">Jun 2008</time></div>
+        </header>
+        
+        <ul><li>Planned, coordinated, and controlled delivery across stakeholders in the San Diego PMO, enterprise customers, and the Ukrainian development team.</li></ul>
+      </div>
+      <div class="position">
+        <header class="entry-head">
+          <h4>R&amp;D Developer</h4>
+          <div class="entry-meta"><time datetime="2004-05">May 2004</time> – <time datetime="2007-10">Oct 2007</time></div>
+        </header>
+        
+        
+      </div>
+    </div></details></div>
+</article>
+</section>
+
+<section aria-labelledby="education-h">
+  <h2 id="education-h">Education</h2>
+  
+<article class="entry">
+  <header class="entry-head">
+    <h3>Master of Science in Computer Systems and Networks</h3>
+    <div class="entry-meta"><time datetime="2006">2006</time> – <time datetime="2007">2007</time></div>
+  </header>
+  <p class="entry-sub">Kharkiv National University of Radio Electronics · GPA: 3.66</p>
+  
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3>Bachelor's degree in Computer Science</h3>
+    <div class="entry-meta"><time datetime="2002">2002</time> – <time datetime="2006">2006</time></div>
+  </header>
+  <p class="entry-sub">Kharkiv National University of Radio Electronics</p>
+  
+</article>
+</section>
+
+<section aria-labelledby="patents-h">
+  <h2 id="patents-h">Patents &amp; Publications</h2>
+  
+<article class="entry">
+  <header class="entry-head">
+    <h3><a href="https://patents.google.com/patent/US20220060330A1/en" target="_blank" rel="noopener">Defining and managing forms in a distributed ledger trust network</a></h3>
+    <div class="entry-meta"><time datetime="2026-02-10">Feb 2026</time></div>
+  </header>
+  <p class="entry-sub">USPTO</p>
+  <p class="entry-desc">Patent US20220060330A1</p>
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3><a href="https://patents.google.com/patent/EP3362970B1/en" target="_blank" rel="noopener">Blockchain-based identity and transaction platform</a></h3>
+    <div class="entry-meta"><time datetime="2024-08-14">Aug 2024</time></div>
+  </header>
+  <p class="entry-sub">EPO</p>
+  <p class="entry-desc">Patent EP3362970B1 16855952.4 - 1217 PCT/US2016054920</p>
+</article>
+<article class="entry">
+  <header class="entry-head">
+    <h3><a href="https://patents.google.com/patent/EP4270864A1/en" target="_blank" rel="noopener">Transaction authorization and verification through distributed-ledger-based chain of custody</a></h3>
+    <div class="entry-meta"><time datetime="2023-04-25">Apr 2023</time></div>
+  </header>
+  <p class="entry-sub">EPO</p>
+  <p class="entry-desc">Patent EP4270864A1 (filed). Decentralized chain-of-custody for asset-anchored transactions, with geolocation-bound transactable credits recorded in a distributed ledger.</p>
+</article>
+</section>
+
+<section aria-labelledby="skills-h">
+  <h2 id="skills-h">Skills</h2>
+  <dl class="skills">
+  <dt>Architecture</dt>
+  <dd>Distributed Systems, Event Sourcing, CQRS, Domain-Driven Design, Microservices, API-first Design, REST API, Design Patterns, Test-Driven Development</dd>
+  <dt>Engineering Leadership</dt>
+  <dd>Engineering Management, Team Building &amp; Hiring, Mentoring, Agile / Scrum, Cross-functional Collaboration, Product Strategy, Stakeholder Management</dd>
+  <dt>Infrastructure</dt>
+  <dd>Docker, Terraform, Vault, Consul, AWS, Microsoft Azure, RabbitMQ, OpenTelemetry, Kibana</dd>
+  <dt>Databases</dt>
+  <dd>MongoDB, MS SQL, PostgreSQL, SQLite, Redis, Elastic Search</dd>
+  <dt>Web &amp; Mobile Development</dt>
+  <dd>TypeScript, JavaScript, Node.js, React, Single-Page Applications, Responsive / Mobile Web, iOS (Objective-C), UX Design, .NET, C#</dd>
+  <dt>Distributed Ledger</dt>
+  <dd>Ethereum, Smart Contracts, Distributed Ledger Technology</dd>
+  </dl>
+</section>
+
+<section aria-labelledby="languages-h">
+  <h2 id="languages-h">Languages</h2>
+  <p class="entry-sub">English — Professional · Russian — Native · Ukrainian — Native</p>
+</section>
+</main>
+<script>
+(() => {
   const duration = (start, end) => {
     if (!start) return '';
     const [sy, sm = '1'] = start.split('-');
     const now = new Date();
     const [ey, em] = end ? end.split('-') : [String(now.getFullYear()), String(now.getMonth() + 1)];
-    const total = (parseInt(ey, 10) - parseInt(sy, 10)) * 12 + (parseInt(em, 10) - parseInt(sm, 10));
+    const total = (Number(ey) - Number(sy)) * 12 + (Number(em) - Number(sm));
     if (total < 0) return '';
-    if (total < 18) return `${total} ${total === 1 ? 'mo' : 'mos'}`;
-    const yrs = Math.round((total / 12) * 10) / 10;
-    const label = Number.isInteger(yrs) ? String(yrs) : yrs.toFixed(1);
-    return `${label} ${yrs === 1 ? 'yr' : 'yrs'}`;
-  };
-  const el = (tag, props = {}, ...children) => {
-    const node = document.createElement(tag);
-    for (const [k, v] of Object.entries(props)) {
-      if (v == null) continue;
-      if (k === 'class') node.className = v;
-      else if (k === 'html') node.innerHTML = v;
-      else node.setAttribute(k, v);
-    }
-    for (const c of children.flat()) {
-      if (c == null || c === false) continue;
-      node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
-    }
-    return node;
-  };
-  const link = (href, text) => el('a', { href, target: '_blank', rel: 'noopener' }, text);
-
-  if(data.basics?.name)
-  	document.title = data.basics.name;
-  root.innerHTML = '';
-
-  // Header
-  if (data.basics) {
-    const b = data.basics;
-    const text = el('div', { class: 'header-text' });
-    text.appendChild(el('h1', {}, b.name || ''));
-    if (b.label) text.appendChild(el('p', { class: 'label' }, b.label));
-    const contact = el('p', { class: 'contact' });
-    if (b.url) contact.appendChild(el('span', {}, link(b.url, b.url.replace(/^https?:\/\//, ''))));
-    (b.profiles || []).forEach(p => {
-      contact.appendChild(el('span', {}, link(p.url, `${p.network}: ${p.username}`)));
-    });
-    if (contact.children.length) text.appendChild(contact);
-
-    const header = el('div', { class: 'header' });
-    const avatar = el('img', {
-      class: 'avatar',
-      src: 'https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=200&d=mp',
-      alt: b.name || ''
-    });
-    header.appendChild(avatar);
-    header.appendChild(text);
-    root.appendChild(header);
-
-    if (b.summary) root.appendChild(el('p', { class: 'summary' }, b.summary));
-  }
-
-  const section = (title, items, render) => {
-    if (!items || !items.length) return;
-    root.appendChild(el('h2', {}, title));
-    items.forEach(item => root.appendChild(render(item)));
+    if (total < 12) return total + ' ' + (total === 1 ? 'mo' : 'mos');
+    const yrs = Math.round((total / 12) * 2) / 2;
+    return (Number.isInteger(yrs) ? String(yrs) : yrs.toFixed(1)) + ' ' + (yrs === 1 ? 'yr' : 'yrs');
   };
 
-  // Projects — first 3 visible, rest behind toggle
-  if (data.projects?.length) {
-    root.appendChild(el('h2', {}, 'Projects'));
-    const VISIBLE = 3;
-    const renderProject = (p) => {
-      const head = el('div', { class: 'entry-head' },
-        el('h3', {}, p.url ? link(p.url, p.name) : p.name),
-        el('div', { class: 'entry-meta' }, range(p.startDate, p.endDate))
-      );
-      const subParts = [p.entity, p.roles?.join(', '), p.type].filter(Boolean);
-      const entry = el('div', { class: 'entry' }, head);
-      if (subParts.length) entry.appendChild(el('p', { class: 'entry-sub' }, subParts.join(' · ')));
-      if (p.description) entry.appendChild(el('p', { class: 'entry-desc' }, p.description));
-      if (p.keywords?.length) {
-        entry.appendChild(el('p', { class: 'entry-tags' }, p.keywords.join(' · ')));
-      }
-      return entry;
-    };
-    data.projects.slice(0, VISIBLE).forEach(p => root.appendChild(renderProject(p)));
-    const rest = data.projects.slice(VISIBLE);
-    if (rest.length) {
-      const more = el('div', { class: 'hidden' });
-      rest.forEach(p => more.appendChild(renderProject(p)));
-      const btn = el('button', { class: 'toggle', type: 'button' }, `View ${rest.length} more`);
-      btn.addEventListener('click', () => {
-        const collapsed = more.classList.toggle('hidden');
-        btn.textContent = collapsed ? `View ${rest.length} more` : 'View less';
-      });
-      root.appendChild(btn);
-      root.appendChild(more);
-    }
-  }
-
-  // Experience — grouped by company
-  if (data.work?.length) {
-    root.appendChild(el('h2', {}, 'Experience'));
-    const groups = [];
-    for (const w of data.work) {
-      const last = groups[groups.length - 1];
-      if (last && last.name === w.name) last.items.push(w);
-      else groups.push({ name: w.name, url: w.url, items: [w] });
-    }
-    const subLine = (w, url) => {
-      const parts = [];
-      if (url) parts.push(link(url, url.replace(/^https?:\/\//, '').replace(/\/$/, '')));
-      if (w.description) parts.push(document.createTextNode(w.description));
-      if (w.location) parts.push(document.createTextNode(w.location));
-      if (!parts.length) return null;
-      const p = el('p', { class: 'entry-sub' });
-      parts.forEach((node, i) => {
-        if (i > 0) p.appendChild(document.createTextNode(' · '));
-        p.appendChild(node);
-      });
-      return p;
-    };
-
-    for (const g of groups) {
-      const first = g.items[0];                       // most recent role
-      const last = g.items[g.items.length - 1];       // earliest role
-
-      if (g.items.length === 1) {
-        const w = first;
-        const dur = duration(w.startDate, w.endDate);
-        const meta = dur ? `${range(w.startDate, w.endDate)} · ${dur}` : range(w.startDate, w.endDate);
-        const title = [g.name, w.position].filter(Boolean).join(' - ');
-        const head = el('div', { class: 'entry-head' },
-          el('h3', {}, title),
-          el('div', { class: 'entry-meta' }, meta)
-        );
-        const entry = el('div', { class: 'entry' }, head);
-        const sub = subLine(w, g.url);
-        if (sub) entry.appendChild(sub);
-        if (w.summary) entry.appendChild(el('p', { class: 'entry-desc' }, w.summary));
-        if (w.highlights?.length) {
-          entry.appendChild(el('ul', {}, w.highlights.map(h => el('li', {}, h))));
-        }
-        root.appendChild(entry);
-        continue;
-      }
-
-      const compRange = range(last.startDate, first.endDate);
-      const compDur = duration(last.startDate, first.endDate);
-      const meta = compDur ? `${compRange} · ${compDur}` : compRange;
-      const head = el('div', { class: 'entry-head' },
-        el('h3', {}, g.name || ''),
-        el('div', { class: 'entry-meta' }, meta)
-      );
-      const entry = el('div', { class: 'entry' }, head);
-      const sub = subLine(first, g.url);
-      if (sub) entry.appendChild(sub);
-
-      for (const w of g.items) {
-        const pHead = el('div', { class: 'entry-head' },
-          el('h4', {}, w.position || ''),
-          el('div', { class: 'entry-meta' }, range(w.startDate, w.endDate))
-        );
-        const pos = el('div', { class: 'position' }, pHead);
-        if (w.summary) pos.appendChild(el('p', { class: 'entry-desc' }, w.summary));
-        if (w.highlights?.length) {
-          pos.appendChild(el('ul', {}, w.highlights.map(h => el('li', {}, h))));
-        }
-        entry.appendChild(pos);
-      }
-      root.appendChild(entry);
-    }
-  }
-
-  // Education
-  section('Education', data.education, e => {
-    const title = [e.studyType, e.area].filter(Boolean).join(' in ') || e.institution;
-    const head = el('div', { class: 'entry-head' },
-      el('h3', {}, title),
-      el('div', { class: 'entry-meta' }, range(e.startDate, e.endDate))
-    );
-    const entry = el('div', { class: 'entry' }, head);
-    if (e.institution && title !== e.institution) {
-      entry.appendChild(el('p', { class: 'entry-sub' }, e.institution));
-    }
-    if (e.score) entry.appendChild(el('p', { class: 'entry-desc' }, e.score));
-    if (e.courses?.length) {
-      entry.appendChild(el('ul', {}, e.courses.map(c => el('li', {}, c))));
-    }
-    return entry;
-  });
-
-  // Publications
-  section('Patents & Publications', data.publications, p => {
-    const head = el('div', { class: 'entry-head' },
-      el('h3', {}, p.url ? link(p.url, p.name) : p.name),
-      el('div', { class: 'entry-meta' }, fmtDate(p.releaseDate))
-    );
-    const entry = el('div', { class: 'entry' }, head);
-    if (p.publisher) entry.appendChild(el('p', { class: 'entry-sub' }, p.publisher));
-    if (p.summary) entry.appendChild(el('p', { class: 'entry-desc' }, p.summary));
-    return entry;
-  });
-
-  // Awards
-  section('Honors & Awards', data.awards, a => {
-    const head = el('div', { class: 'entry-head' },
-      el('h3', {}, a.title),
-      el('div', { class: 'entry-meta' }, fmtDate(a.date))
-    );
-    const entry = el('div', { class: 'entry' }, head);
-    if (a.awarder) entry.appendChild(el('p', { class: 'entry-sub' }, a.awarder));
-    if (a.summary) entry.appendChild(el('p', { class: 'entry-desc' }, a.summary));
-    return entry;
-  });
-
-  // Languages
-  if (data.languages?.length) {
-    root.appendChild(el('h2', {}, 'Languages'));
-    const list = data.languages.map(l => `${l.language} — ${l.fluency}`).join(' · ');
-    root.appendChild(el('p', { class: 'entry-sub' }, list));
-  }
-
-  // References
-  section('References', data.references, r => {
-    const entry = el('div', { class: 'entry' });
-    entry.appendChild(el('h3', {}, r.name));
-    if (r.reference) entry.appendChild(el('blockquote', {}, r.reference));
-    return entry;
+  document.querySelectorAll('[data-duration-start]').forEach((el) => {
+    const text = duration(el.dataset.durationStart, el.dataset.durationEnd);
+    if (text) el.textContent = ' · ' + text;
   });
 })();
 </script>

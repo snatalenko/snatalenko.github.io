@@ -243,7 +243,7 @@
     {
       "name": "node-cqrs",
       "description": "CQRS/Event Sourcing toolkit for Node.js with DI, sagas, projections, and optional common stack adapters",
-      "url": "https://natalenko.com/node-cqrs/",
+      "url": "https://node-cqrs.org/",
       "keywords": [
         "CQRS",
         "Event-Sourcing",

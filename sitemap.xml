@@ -13,10 +13,6 @@ permalink: /sitemap.xml
     <lastmod>{{ site.data.sitemap_meta.about_updated_at | xml_escape }}</lastmod>
   </url>
   <url>
-    <loc>https://natalenko.com/node-cqrs/</loc>
-    <lastmod>2026-05-21</lastmod>
-  </url>
-  <url>
     <loc>https://natalenko.com/morphos/</loc>
     <lastmod>2026-05-20</lastmod>
   </url>

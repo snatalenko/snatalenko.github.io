@@ -10,7 +10,7 @@
 html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
 body {
   font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  padding: 48px 24px;
+  padding: 20px 24px 40px;
 }
 main { max-width: var(--maxw); margin: 0 auto; }
 h1 { font-size: 28px; font-weight: 600; margin: 0 0 4px; letter-spacing: -0.01em; }
@@ -43,6 +43,35 @@ li { margin: 3px 0; }
 .contact a { color: var(--muted); }
 .contact span + span::before { content: " · "; color: var(--rule); margin: 0 4px; }
 
+.site-header {
+  margin: 0; padding: 0;
+}
+.site-nav {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 24px;
+  margin: 0; font-size: 13px; line-height: 1.2;
+}
+.site-nav-group { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.site-nav-profiles a { display: inline-flex; align-items: center; gap: 3px; }
+.external-link-icon {
+  width: 11px; height: 11px; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.25;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.site-nav a[aria-current="page"] {
+  color: var(--fg); text-decoration: underline;
+  text-decoration-thickness: 1px; text-underline-offset: 4px;
+}
+
+.page-header { margin-top: 34px; }
+.page-header h1 { margin-bottom: 7px; }
+.page-intro { color: var(--muted); line-height: 1.6; }
+.reading-section { margin-top: 30px; }
+.about-header { margin-top: 32px; }
+
 .entry { margin: 0 0 18px; }
 .entry:last-child { margin-bottom: 0; }
 .entry-head {
@@ -53,6 +82,27 @@ li { margin: 3px 0; }
 .entry-sub { color: var(--muted); font-size: 14px; margin: 2px 0 0; }
 .entry-desc { margin-top: 6px; font-size: 14px; }
 .entry-tags { margin-top: 6px; font-size: 12px; color: var(--muted); }
+
+.recommendation-list { margin: 0; }
+.recommendation { margin: 0; padding: 0 0 22px; }
+.recommendation + .recommendation {
+  border-top: 1px solid var(--rule);
+  padding-top: 22px;
+}
+.recommendation-title {
+  margin: 0; padding: 0; border: 0;
+  color: var(--fg); font-size: 17px; font-weight: 600;
+  text-transform: none; letter-spacing: normal;
+}
+.recommendation-meta { margin-top: 4px; color: var(--muted); font-size: 13px; }
+.recommendation-thought { margin-top: 9px; font-size: 14px; line-height: 1.6; }
+.recommendation-tags { margin-top: 7px; color: var(--muted); font-size: 12px; }
+.empty-state { color: var(--muted); font-size: 14px; }
+.site-footer {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  margin-top: 38px; padding-top: 12px;
+  border-top: 1px solid var(--rule); font-size: 13px;
+}
 
 .skills { margin: 0; }
 .skills dt { font-weight: 600; font-size: 14px; margin-top: 10px; }
@@ -106,6 +156,8 @@ details.more[open] > summary > .more-show { display: none; }
 details.more[open] > summary > .more-hide { display: inline; }
 
 @media print {
+  .site-header, .site-footer { display: none; }
+  .about-header { margin-top: 0; }
   details.more > * { display: block !important; }
   details.more > summary { display: none; }
   details.inline-more > summary { display: none; }
@@ -119,6 +171,8 @@ details.more[open] > summary > .more-hide { display: inline; }
 }
 
 @media (max-width: 640px) {
+  body { padding: 16px 18px 32px; }
+  .site-nav { gap: 10px 14px; }
   .header { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
   .header .header-text { width: 100%; }
   .contact { display: flex; flex-wrap: wrap; justify-content: center; }

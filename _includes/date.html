@@ -1,0 +1,13 @@
+{%- if include.value -%}
+  {%- assign date_parts = include.value | split: "-" -%}
+  {%- assign date_year = date_parts[0] -%}
+  {%- if date_parts.size > 1 -%}
+    {%- assign month_names = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec" | split: "," -%}
+    {%- assign month_index = date_parts[1] | minus: 1 -%}
+    {%- assign date_text = month_names[month_index] | append: " " | append: date_year -%}
+  {%- else -%}
+    {%- assign date_text = date_year -%}
+  {%- endif -%}
+<time datetime="{{ include.value | escape }}">{{ date_text }}</time>
+{%- endif -%}
+

@@ -1,0 +1,10 @@
+{%- assign link_site = site.data.resume.basics.url -%}
+{%- assign link_prefix = link_site | append: "/" -%}
+{%- if include.href == link_site -%}
+<a href="/">{{ include.text | escape }}</a>
+{%- elsif include.href contains link_prefix -%}
+<a href="{{ include.href | remove_first: link_site | escape }}">{{ include.text | escape }}</a>
+{%- else -%}
+<a href="{{ include.href | escape }}" target="_blank" rel="noopener">{{ include.text | escape }}</a>
+{%- endif -%}
+

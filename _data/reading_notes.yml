@@ -1,0 +1,9 @@
+# Add concise thoughts after the importer creates an article ID in reading.json.
+#
+# "0123456789abcdef":
+#   thought: "A useful framing of architecture as constraint management."
+#   tags:
+#     - architecture
+#     - leadership
+#   featured: true
+{}

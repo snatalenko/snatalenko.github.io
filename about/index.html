@@ -1,0 +1,213 @@
+---
+layout: null
+---
+{% assign resume = site.data.resume %}
+{% assign basics = resume.basics %}
+{% assign current_job = resume.work | first %}
+{% assign masters = nil %}
+{% for education in resume.education %}
+  {% assign study_type = education.studyType | downcase %}
+  {% if study_type contains "master" %}
+    {% assign masters = education %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ basics.name | escape }} — {{ basics.label | escape }}</title>
+<meta name="description" content="{{ basics.summary | escape }}">
+<meta name="author" content="{{ basics.name | escape }}">
+<link rel="canonical" href="{{ basics.url | escape }}/about/">
+<link rel="alternate" type="application/rss+xml" href="/reading.xml" title="{{ site.reading.title | escape }}">
+<link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="{{ basics.name | escape }}">
+<meta property="og:description" content="{{ basics.summary | escape }}">
+<meta property="og:url" content="{{ basics.url | escape }}/about/">
+<meta property="og:image" content="{{ basics.image | escape }}">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ basics.name | jsonify }},
+  "url": {{ basics.url | jsonify }},
+  "image": {{ basics.image | jsonify }},
+  "sameAs": [
+    {% for profile in basics.profiles %}{{ profile.url | jsonify }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]{% if current_job.position %},
+  "jobTitle": {{ current_job.position | jsonify }}{% endif %}{% if current_job.name %},
+  "worksFor": {
+    "@type": "Organization",
+    "name": {{ current_job.name | jsonify }}{% if current_job.url %},
+    "url": {{ current_job.url | jsonify }}{% endif %}
+  }{% endif %}{% if masters.institution %},
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": {{ masters.institution | jsonify }}
+  }{% endif %}{% if basics.summary %},
+  "description": {{ basics.summary | jsonify }}{% endif %}
+}
+</script>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+{% include site_header.html current="about" %}
+
+{% if basics %}
+<header class="header about-header">
+  {% if basics.image %}<img class="avatar" src="{{ basics.image | escape }}" alt="{{ basics.name | escape }}" width="88" height="88">{% endif %}
+  <div class="header-text">
+    <h1>{{ basics.name | escape }}</h1>
+    <p class="label">{{ basics.label | escape }}</p>
+    {% if basics.profiles.size > 0 %}<address class="contact">{% for profile in basics.profiles %}<span>{% capture profile_text %}{{ profile.network }}: {{ profile.username }}{% endcapture %}{% include link.html href=profile.url text=profile_text %}</span>{% endfor %}</address>{% endif %}
+  </div>
+</header>
+{% if basics.summary %}<p class="summary">{{ basics.summary | escape }}</p>{% endif %}
+{% endif %}
+
+{% if resume.projects.size > 0 %}
+<section aria-labelledby="projects-h">
+  <h2 id="projects-h">Projects</h2>
+  {% for project in resume.projects limit: site.projects_visible %}
+    {% include project.html project=project %}
+  {% endfor %}
+  {% assign hidden_projects = resume.projects.size | minus: site.projects_visible %}
+  {% if hidden_projects > 0 %}
+  <details class="more">
+    <summary><span class="more-show">View {{ hidden_projects }} more</span><span class="more-hide">View less</span></summary>
+    {% for project in resume.projects offset: site.projects_visible %}
+      {% include project.html project=project %}
+    {% endfor %}
+  </details>
+  {% endif %}
+</section>
+{% endif %}
+
+{% if resume.work.size > 0 %}
+<section aria-labelledby="experience-h">
+  <h2 id="experience-h">Experience</h2>
+  {% assign work_groups = resume.work | group_by: "name" %}
+  {% for work_group in work_groups %}
+    {% assign first_work = work_group.items | first %}
+    {% assign last_work = work_group.items | last %}
+    {% if work_group.items.size == 1 %}
+      {% assign work = first_work %}
+      {% assign has_more = false %}
+      {% if work.description or work.summary or work.highlights.size > 0 %}{% assign has_more = true %}{% endif %}
+<article class="entry">
+  <header class="entry-head">
+    <h3>{{ work_group.name | escape }}{% if work.position %} - {{ work.position | escape }}{% endif %}</h3>
+    <div class="entry-meta">{% include range.html start=work.startDate end=work.endDate %}{% if work.startDate %}<span class="duration" data-duration-start="{{ work.startDate | escape }}"{% if work.endDate %} data-duration-end="{{ work.endDate | escape }}"{% endif %}></span>{% endif %}</div>
+  </header>
+  {% if first_work.url or work.location or has_more %}<div class="entry-sub">{% if first_work.url %}{% assign company_text = first_work.url | replace: "https://", "" | replace: "http://", "" %}{% include link.html href=first_work.url text=company_text %}{% if work.location %} · {% endif %}{% endif %}{% if work.location %}{{ work.location | escape }}{% endif %}{% if has_more %}<details class="inline-more"><summary>{% if first_work.url or work.location %} · {% endif %}<span class="more-text">View more</span></summary><div class="entry-body">
+      {% if work.description %}<p class="entry-desc">{{ work.description | escape }}</p>{% endif %}
+      {% if work.summary %}<p class="entry-desc">{{ work.summary | escape }}</p>{% endif %}
+      {% if work.highlights.size > 0 %}<ul>{% for highlight in work.highlights %}<li>{{ highlight | escape }}</li>{% endfor %}</ul>{% endif %}
+    </div></details>{% endif %}</div>{% endif %}
+</article>
+    {% else %}
+<article class="entry">
+  <header class="entry-head">
+    <h3>{{ work_group.name | escape }}</h3>
+    <div class="entry-meta">{% include range.html start=last_work.startDate end=first_work.endDate %}{% if last_work.startDate %}<span class="duration" data-duration-start="{{ last_work.startDate | escape }}"{% if first_work.endDate %} data-duration-end="{{ first_work.endDate | escape }}"{% endif %}></span>{% endif %}</div>
+  </header>
+  <div class="entry-sub">{% if first_work.url %}{% assign company_text = first_work.url | replace: "https://", "" | replace: "http://", "" %}{% include link.html href=first_work.url text=company_text %}{% if first_work.location %} · {% endif %}{% endif %}{% if first_work.location %}{{ first_work.location | escape }}{% endif %}<details class="inline-more"><summary>{% if first_work.url or first_work.location %} · {% endif %}<span class="more-text">View more</span></summary><div class="entry-body">
+      {% if first_work.description %}<p class="entry-desc">{{ first_work.description | escape }}</p>{% endif %}
+      {% for work in work_group.items %}
+      <div class="position">
+        <header class="entry-head">
+          <h4>{{ work.position | escape }}</h4>
+          <div class="entry-meta">{% include range.html start=work.startDate end=work.endDate %}</div>
+        </header>
+        {% if work.summary %}<p class="entry-desc">{{ work.summary | escape }}</p>{% endif %}
+        {% if work.highlights.size > 0 %}<ul>{% for highlight in work.highlights %}<li>{{ highlight | escape }}</li>{% endfor %}</ul>{% endif %}
+      </div>
+      {% endfor %}
+    </div></details></div>
+</article>
+    {% endif %}
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if resume.education.size > 0 %}
+<section aria-labelledby="education-h">
+  <h2 id="education-h">Education</h2>
+  {% for education in resume.education %}
+    {% if education.studyType and education.area %}{% capture education_title %}{{ education.studyType }} in {{ education.area }}{% endcapture %}{% elsif education.studyType %}{% assign education_title = education.studyType %}{% elsif education.area %}{% assign education_title = education.area %}{% else %}{% assign education_title = education.institution %}{% endif %}
+<article class="entry">
+  <header class="entry-head">
+    <h3>{{ education_title | escape }}</h3>
+    <div class="entry-meta">{% include range.html start=education.startDate end=education.endDate %}</div>
+  </header>
+  {% if education.institution != education_title or education.score %}<p class="entry-sub">{% if education.institution != education_title %}{{ education.institution | escape }}{% if education.score %} · {% endif %}{% endif %}{% if education.score %}{{ education.score | escape }}{% endif %}</p>{% endif %}
+  {% if education.courses.size > 0 %}<ul>{% for course in education.courses %}<li>{{ course | escape }}</li>{% endfor %}</ul>{% endif %}
+</article>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if resume.publications.size > 0 %}
+<section aria-labelledby="patents-h">
+  <h2 id="patents-h">Patents &amp; Publications</h2>
+  {% for publication in resume.publications %}
+<article class="entry">
+  <header class="entry-head">
+    <h3>{% if publication.url %}{% include link.html href=publication.url text=publication.name %}{% else %}{{ publication.name | escape }}{% endif %}</h3>
+    <div class="entry-meta">{% include date.html value=publication.releaseDate %}</div>
+  </header>
+  {% if publication.publisher %}<p class="entry-sub">{{ publication.publisher | escape }}</p>{% endif %}
+  {% if publication.summary %}<p class="entry-desc">{{ publication.summary | escape }}</p>{% endif %}
+</article>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if resume.skills.size > 0 %}
+<section aria-labelledby="skills-h">
+  <h2 id="skills-h">Skills</h2>
+  <dl class="skills">
+    {% for skill in resume.skills %}{% if skill.keywords.size > 0 or skill.name %}
+    <dt>{{ skill.name | escape }}</dt>
+    <dd>{{ skill.keywords | join: ", " | escape }}</dd>
+    {% endif %}{% endfor %}
+  </dl>
+</section>
+{% endif %}
+
+{% if resume.languages.size > 0 %}
+<section aria-labelledby="languages-h">
+  <h2 id="languages-h">Languages</h2>
+  <p class="entry-sub">{% for language in resume.languages %}{{ language.language | escape }} — {{ language.fluency | escape }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+</section>
+{% endif %}
+{% include site_footer.html %}
+</main>
+<script>
+(() => {
+  const duration = (start, end) => {
+    if (!start) return '';
+    const [sy, sm = '1'] = start.split('-');
+    const now = new Date();
+    const [ey, em] = end ? end.split('-') : [String(now.getFullYear()), String(now.getMonth() + 1)];
+    const total = (Number(ey) - Number(sy)) * 12 + (Number(em) - Number(sm));
+    if (total < 0) return '';
+    if (total < 12) return total + ' ' + (total === 1 ? 'mo' : 'mos');
+    const yrs = Math.round((total / 12) * 2) / 2;
+    return (Number.isInteger(yrs) ? String(yrs) : yrs.toFixed(1)) + ' ' + (yrs === 1 ? 'yr' : 'yrs');
+  };
+
+  document.querySelectorAll('[data-duration-start]').forEach((el) => {
+    const text = duration(el.dataset.durationStart, el.dataset.durationEnd);
+    if (text) el.textContent = ' · ' + text;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{%- if include.start -%}
+  {%- include date.html value=include.start -%}
+  {%- if include.end -%}
+    {{ " – " }}{%- include date.html value=include.end -%}
+  {%- else -%}
+    {{ " – Present" }}
+  {%- endif -%}
+{%- elsif include.end -%}
+  {%- include date.html value=include.end -%}
+{%- endif -%}

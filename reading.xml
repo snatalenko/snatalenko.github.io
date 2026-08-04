@@ -1,0 +1,27 @@
+---
+layout: null
+permalink: /reading.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.reading.title | xml_escape }}</title>
+    <link>{{ site.url }}/</link>
+    <description>{{ site.reading.description | xml_escape }}</description>
+    <language>en</language>
+    <atom:link href="{{ site.url }}/reading.xml" rel="self" type="application/rss+xml" />
+    {% assign latest_article = site.data.reading | first %}
+    <lastBuildDate>{% if latest_article.liked_at %}{{ latest_article.liked_at | date_to_rfc822 }}{% else %}{{ site.time | date_to_rfc822 }}{% endif %}</lastBuildDate>
+    {% for article in site.data.reading limit: site.reading.feed_limit %}
+      {% assign article_id = article.id | append: "" %}
+      {% assign note = site.data.reading_notes[article_id] %}
+    <item>
+      <title>{{ article.title | xml_escape }}</title>
+      <link>{{ article.url | xml_escape }}</link>
+      <guid isPermaLink="false">natalenko-reading-{{ article.id | xml_escape }}</guid>
+      {% if article.liked_at %}<pubDate>{{ article.liked_at | date_to_rfc822 }}</pubDate>{% endif %}
+      <description>{% if note and note.thought %}{{ note.thought | xml_escape }}{% elsif article.source %}From {{ article.source | xml_escape }}{% else %}Recommended reading{% endif %}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

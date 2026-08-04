@@ -1,262 +1,67 @@
+---
+layout: null
+---
+{% assign resume = site.data.resume %}
+{% assign basics = resume.basics %}
+{% assign reading = site.data.reading %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stanislav Natalenko — CTO at BanQu Inc.</title>
-<meta name="description" content="Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.">
-<meta name="author" content="Stanislav Natalenko">
-<link rel="canonical" href="https://natalenko.com/">
+<title>{{ site.reading.title | escape }}</title>
+<meta name="description" content="{{ site.reading.description | escape }}">
+<meta name="author" content="{{ basics.name | escape }}">
+<link rel="canonical" href="{{ basics.url | escape }}/">
+<link rel="alternate" type="application/rss+xml" href="/reading.xml" title="{{ site.reading.title | escape }}">
 <link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
-<meta property="og:type" content="profile">
-<meta property="og:title" content="Stanislav Natalenko">
-<meta property="og:description" content="Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.">
-<meta property="og:url" content="https://natalenko.com/">
-<meta property="og:image" content="https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=400&amp;d=mp">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ site.reading.title | escape }}">
+<meta property="og:description" content="{{ site.reading.description | escape }}">
+<meta property="og:url" content="{{ basics.url | escape }}/">
+<meta property="og:image" content="{{ basics.image | escape }}">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Stanislav Natalenko",
-  "url": "https://natalenko.com",
-  "image": "https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=400&d=mp",
-  "sameAs": [
-    "https://github.com/snatalenko",
-    "https://www.linkedin.com/in/snatalenko"
-  ],
-  "jobTitle": "CTO, VP Engineering, Architect",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "BanQu",
-    "url": "https://banqu.co"
-  },
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "Kharkiv National University of Radio Electronics"
-  },
-  "description": "Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation."
+  "name": {{ basics.name | jsonify }},
+  "url": {{ basics.url | jsonify }},
+  "image": {{ basics.image | jsonify }},
+  "sameAs": [{% for profile in basics.profiles %}{{ profile.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
+  "description": {{ basics.summary | jsonify }}
 }
 </script>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <main>
+{% include site_header.html current="recommendations" %}
 
-<header class="header">
-  <img class="avatar" src="https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=400&amp;d=mp" alt="Stanislav Natalenko" width="88" height="88">
-  <div class="header-text">
-    <h1>Stanislav Natalenko</h1>
-    <p class="label">CTO at BanQu Inc.</p>
-    <address class="contact"><span><a href="https://github.com/snatalenko" target="_blank" rel="noopener">GitHub: snatalenko</a></span><span><a href="https://www.linkedin.com/in/snatalenko" target="_blank" rel="noopener">LinkedIn: snatalenko</a></span></address>
-  </div>
+<header class="page-header">
+  <p class="page-intro">{{ site.reading.description | escape }}</p>
 </header>
-<p class="summary">Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.</p>
 
-<section aria-labelledby="projects-h">
-  <h2 id="projects-h">Projects</h2>
-  
-<article class="entry">
-  <header class="entry-head">
-    <h3><a href="/node-cqrs/">node-cqrs</a></h3>
-    <div class="entry-meta"><time datetime="2015-03">Mar 2015</time> – Present</div>
-  </header>
-  
-  <p class="entry-desc">CQRS/Event Sourcing toolkit for Node.js with DI, sagas, projections, and optional common stack adapters</p>
-  <p class="entry-tags">CQRS · Event-Sourcing · TypeScript · SQLite · MongoDB · RabbitMQ · Redis · OpenTelemetry · Worker Threads</p>
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3><a href="/morphos/">morphos</a></h3>
-    <div class="entry-meta"><time datetime="2016-05">May 2016</time> – Present</div>
-  </header>
-  
-  <p class="entry-desc">JSON-to-JSON mapper with user-defined JSON mapping specs, plain JS transformation expressions, and secure VM execution</p>
-  <p class="entry-tags">Mapping · Transformations · TypeScript</p>
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3><a href="https://github.com/snatalenko/di0/" target="_blank" rel="noopener">di0</a></h3>
-    <div class="entry-meta"><time datetime="2019-12">Dec 2019</time> – Present</div>
-  </header>
-  
-  <p class="entry-desc">Lightweight dependency injection container for TS/ES6 classes</p>
-  <p class="entry-tags">Dependency-Injection · TypeScript</p>
-</article>
-  
+<section aria-label="Reading recommendations" class="reading-section">
+  {% if reading.size > 0 %}
+    <div class="recommendation-list">
+    {% for article in reading %}
+      {% assign article_id = article.id | append: "" %}
+      {% assign note = site.data.reading_notes[article_id] %}
+      <article class="recommendation" id="reading-{{ article.id | escape }}">
+        <h2 class="recommendation-title">{% include link.html href=article.url text=article.title %}</h2>
+        {% if article.source or article.liked_at %}<p class="recommendation-meta">{% if article.source %}{{ article.source | escape }}{% if article.liked_at %} · {% endif %}{% endif %}{% if article.liked_at %}{% include date.html value=article.liked_at %}{% endif %}</p>{% endif %}
+        {% if note and note.thought %}<p class="recommendation-thought">{{ note.thought | escape }}</p>{% endif %}
+        {% if note and note.tags.size > 0 %}<p class="recommendation-tags">{{ note.tags | join: " · " | escape }}</p>{% endif %}
+      </article>
+    {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-state">No recommendations yet.</p>
+  {% endif %}
 </section>
 
-<section aria-labelledby="experience-h">
-  <h2 id="experience-h">Experience</h2>
-  
-<article class="entry">
-  <header class="entry-head">
-    <h3>BanQu - CTO, VP Engineering, Architect</h3>
-    <div class="entry-meta"><time datetime="2015-06">Jun 2015</time> – Present<span class="duration" data-duration-start="2015-06"></span></div>
-  </header>
-  <div class="entry-sub"><a href="https://banqu.co" target="_blank" rel="noopener">banqu.co</a> · Minneapolis, MN · Remote<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
-      <p class="entry-desc">Supply-chain transparency platform built on distributed-ledger technology, serving global enterprise customers</p>
-<ul><li>Lead a distributed team of senior engineers and QA specialists across multiple geographies, owning architecture, product direction, and delivery.</li><li>Built and operate the event-sourced platform powering 10M+ supply-chain events across global enterprise customers.</li><li>Named inventor on three distributed-ledger patents underpinning the BanQu system.</li></ul>
-    </div></details></div>
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3>API Nation - Consulting Software Architect</h3>
-    <div class="entry-meta"><time datetime="2015-05">May 2015</time> – <time datetime="2016-08">Aug 2016</time><span class="duration" data-duration-start="2015-05" data-duration-end="2016-08"></span></div>
-  </header>
-  <div class="entry-sub"><a href="https://apination.com" target="_blank" rel="noopener">apination.com</a> · San Diego, CA · Remote<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
-      <p class="entry-desc">Workflow automation and data-integration platform connecting business tools across the real estate industry.</p>
-<ul><li>Architected and built the integration platform's processing core on AWS Lambda and RabbitMQ with a set of orchestrator services, enabling massively parallel, on-demand processing of large data volumes.</li></ul>
-    </div></details></div>
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3>SpiderSuite - Co-founder and CTO</h3>
-    <div class="entry-meta"><time datetime="2012-02">Feb 2012</time> – <time datetime="2017-06">Jun 2017</time><span class="duration" data-duration-start="2012-02" data-duration-end="2017-06"></span></div>
-  </header>
-  <div class="entry-sub">Minneapolis, MN · Remote<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
-      <p class="entry-desc">Enterprise cloud and mobile inspection management platform for the commercial real estate industry, connecting banks, lenders, servicers, inspection companies, and field inspectors</p>
-<ul><li>Co-founded and grew the company from concept to a production platform serving the commercial real estate lending market.</li><li>Led end-to-end creation of an enterprise product, from initial concept and architecture through production launch.</li><li>Owned product UX, designing the majority of user-facing interfaces with a strong focus on usability and clarity.</li><li>Architected and implemented a scalable, message-driven platform following DDD, CQRS, and API-first principles.</li><li>Designed and built a responsive single-page web application with reliable offline and online operation.</li><li>Delivered a production-ready iOS application integrated with the core platform in under three months.</li><li>Established and enforced company-wide information security, disaster recovery, and business continuity standards.</li><li>Implemented high-availability infrastructure with multi-cloud failover across Azure and AWS.</li></ul>
-    </div></details></div>
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3>SPS Commerce - Product Lead and Scrum Master</h3>
-    <div class="entry-meta"><time datetime="2011-05">May 2011</time> – <time datetime="2012-09">Sep 2012</time><span class="duration" data-duration-start="2011-05" data-duration-end="2012-09"></span></div>
-  </header>
-  <div class="entry-sub"><a href="https://spscommerce.com" target="_blank" rel="noopener">spscommerce.com</a> · Kharkiv, Ukraine<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
-      <p class="entry-desc">Cloud-based supply-chain management software for retailers, suppliers, third-party logistics providers, and partners</p>
-<ul><li>Led development of the SPSC Universal Data Adapter, a turnkey integration product for exchanging data with a variety of ERP systems.</li><li>Facilitated the merge of Direct EDI and SPS Commerce engineering teams post-acquisition, transitioning SPSC product development to the Ukraine office and rolling out Agile Scrum across the merged team.</li></ul>
-    </div></details></div>
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3>Direct EDI</h3>
-    <div class="entry-meta"><time datetime="2004-05">May 2004</time> – <time datetime="2011-05">May 2011</time><span class="duration" data-duration-start="2004-05" data-duration-end="2011-05"></span></div>
-  </header>
-  <div class="entry-sub"><a href="http://directedi.com" target="_blank" rel="noopener">directedi.com</a> · Kharkiv, Ukraine<details class="inline-more"><summary> · <span class="more-text">View more</span></summary><div class="entry-body">
-      <p class="entry-desc">E-commerce solutions for supply-chain network integration, ranging from web-based EDI to fully integrated enterprise systems. Acquired by SPS Commerce</p>
-
-      <div class="position">
-        <header class="entry-head">
-          <h4>Tech Lead and Software Architect</h4>
-          <div class="entry-meta"><time datetime="2008-06">Jun 2008</time> – <time datetime="2011-05">May 2011</time></div>
-        </header>
-        
-        <ul><li>Led or directly developed 5 of 7 core products, owning the full lifecycle from concept through launch and ongoing support.</li><li>Built, hired, and managed multiple cross-functional technology teams composed primarily of senior engineers, QA specialists, and UI designers.</li><li>Drove the transition from Waterfall to Agile Scrum across the entire technology organization.</li></ul>
-      </div>
-      <div class="position">
-        <header class="entry-head">
-          <h4>Project Coordinator</h4>
-          <div class="entry-meta"><time datetime="2007-10">Oct 2007</time> – <time datetime="2008-06">Jun 2008</time></div>
-        </header>
-        
-        <ul><li>Planned, coordinated, and controlled delivery across stakeholders in the San Diego PMO, enterprise customers, and the Ukrainian development team.</li></ul>
-      </div>
-      <div class="position">
-        <header class="entry-head">
-          <h4>R&amp;D Developer</h4>
-          <div class="entry-meta"><time datetime="2004-05">May 2004</time> – <time datetime="2007-10">Oct 2007</time></div>
-        </header>
-        
-        
-      </div>
-    </div></details></div>
-</article>
-</section>
-
-<section aria-labelledby="education-h">
-  <h2 id="education-h">Education</h2>
-  
-<article class="entry">
-  <header class="entry-head">
-    <h3>Master of Science in Computer Systems and Networks</h3>
-    <div class="entry-meta"><time datetime="2006">2006</time> – <time datetime="2007">2007</time></div>
-  </header>
-  <p class="entry-sub">Kharkiv National University of Radio Electronics · GPA: 3.66</p>
-  
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3>Bachelor's degree in Computer Science</h3>
-    <div class="entry-meta"><time datetime="2002">2002</time> – <time datetime="2006">2006</time></div>
-  </header>
-  <p class="entry-sub">Kharkiv National University of Radio Electronics</p>
-  
-</article>
-</section>
-
-<section aria-labelledby="patents-h">
-  <h2 id="patents-h">Patents &amp; Publications</h2>
-  
-<article class="entry">
-  <header class="entry-head">
-    <h3><a href="https://patents.google.com/patent/US20220060330A1/en" target="_blank" rel="noopener">Defining and managing forms in a distributed ledger trust network</a></h3>
-    <div class="entry-meta"><time datetime="2026-02-10">Feb 2026</time></div>
-  </header>
-  <p class="entry-sub">USPTO</p>
-  <p class="entry-desc">Patent US20220060330A1</p>
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3><a href="https://patents.google.com/patent/EP3362970B1/en" target="_blank" rel="noopener">Blockchain-based identity and transaction platform</a></h3>
-    <div class="entry-meta"><time datetime="2024-08-14">Aug 2024</time></div>
-  </header>
-  <p class="entry-sub">EPO</p>
-  <p class="entry-desc">Patent EP3362970B1 16855952.4 - 1217 PCT/US2016054920</p>
-</article>
-<article class="entry">
-  <header class="entry-head">
-    <h3><a href="https://patents.google.com/patent/EP4270864A1/en" target="_blank" rel="noopener">Transaction authorization and verification through distributed-ledger-based chain of custody</a></h3>
-    <div class="entry-meta"><time datetime="2023-04-25">Apr 2023</time></div>
-  </header>
-  <p class="entry-sub">EPO</p>
-  <p class="entry-desc">Patent EP4270864A1 (filed). Decentralized chain-of-custody for asset-anchored transactions, with geolocation-bound transactable credits recorded in a distributed ledger.</p>
-</article>
-</section>
-
-<section aria-labelledby="skills-h">
-  <h2 id="skills-h">Skills</h2>
-  <dl class="skills">
-  <dt>Architecture</dt>
-  <dd>Distributed Systems, Event Sourcing, CQRS, Domain-Driven Design, Microservices, API-first Design, REST API, Design Patterns, Test-Driven Development</dd>
-  <dt>Engineering Leadership</dt>
-  <dd>Engineering Management, Team Building &amp; Hiring, Mentoring, Agile / Scrum, Cross-functional Collaboration, Product Strategy, Stakeholder Management</dd>
-  <dt>Infrastructure</dt>
-  <dd>Docker, Terraform, Vault, Consul, AWS, Microsoft Azure, RabbitMQ, OpenTelemetry, Kibana</dd>
-  <dt>Databases</dt>
-  <dd>MongoDB, MS SQL, PostgreSQL, SQLite, Redis, Elastic Search</dd>
-  <dt>Web &amp; Mobile Development</dt>
-  <dd>TypeScript, JavaScript, Node.js, React, Single-Page Applications, Responsive / Mobile Web, iOS (Objective-C), UX Design, .NET, C#</dd>
-  <dt>Distributed Ledger</dt>
-  <dd>Ethereum, Smart Contracts, Distributed Ledger Technology</dd>
-  </dl>
-</section>
-
-<section aria-labelledby="languages-h">
-  <h2 id="languages-h">Languages</h2>
-  <p class="entry-sub">English — Professional · Russian — Native · Ukrainian — Native</p>
-</section>
+{% include site_footer.html %}
 </main>
-<script>
-(() => {
-  const duration = (start, end) => {
-    if (!start) return '';
-    const [sy, sm = '1'] = start.split('-');
-    const now = new Date();
-    const [ey, em] = end ? end.split('-') : [String(now.getFullYear()), String(now.getMonth() + 1)];
-    const total = (Number(ey) - Number(sy)) * 12 + (Number(em) - Number(sm));
-    if (total < 0) return '';
-    if (total < 12) return total + ' ' + (total === 1 ? 'mo' : 'mos');
-    const yrs = Math.round((total / 12) * 2) / 2;
-    return (Number.isInteger(yrs) ? String(yrs) : yrs.toFixed(1)) + ' ' + (yrs === 1 ? 'yr' : 'yrs');
-  };
-
-  document.querySelectorAll('[data-duration-start]').forEach((el) => {
-    const text = duration(el.dataset.durationStart, el.dataset.durationEnd);
-    if (text) el.textContent = ' · ' + text;
-  });
-})();
-</script>
 </body>
 </html>

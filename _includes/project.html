@@ -1,0 +1,14 @@
+<article class="entry">
+  <header class="entry-head">
+    <h3>{% if include.project.url %}{% include link.html href=include.project.url text=include.project.name %}{% else %}{{ include.project.name | escape }}{% endif %}</h3>
+    <div class="entry-meta">{% include range.html start=include.project.startDate end=include.project.endDate %}</div>
+  </header>
+  {% assign project_sub_parts = "" | split: "" %}
+  {% if include.project.entity %}{% assign project_sub_parts = project_sub_parts | push: include.project.entity %}{% endif %}
+  {% if include.project.type %}{% assign project_sub_parts = project_sub_parts | push: include.project.type %}{% endif %}
+  {% if include.project.roles %}{% assign project_roles = include.project.roles | join: ", " %}{% assign project_sub_parts = project_sub_parts | push: project_roles %}{% endif %}
+  {% if project_sub_parts.size > 0 %}<p class="entry-sub">{{ project_sub_parts | join: " · " | escape }}</p>{% endif %}
+  {% if include.project.description %}<p class="entry-desc">{{ include.project.description | escape }}</p>{% endif %}
+  {% if include.project.keywords.size > 0 %}<p class="entry-tags">{{ include.project.keywords | join: " · " | escape }}</p>{% endif %}
+</article>
+

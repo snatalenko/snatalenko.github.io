@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import html
+import ipaddress
 import json
 import os
 import re
@@ -87,12 +88,20 @@ def source_name(url: str) -> str:
     return hostname.removeprefix("www.")
 
 
-def timestamp_date(value: object) -> str:
-    try:
-        parsed = datetime.fromtimestamp(float(value), tz=timezone.utc)
-    except (TypeError, ValueError, OverflowError, OSError):
+def thumbnail_url(value: object) -> str:
+    url = canonical_url(str(value or ""))
+    if not url:
         return ""
-    return parsed.isoformat(timespec="seconds").replace("+00:00", "Z")
+    parts = urlsplit(url)
+    hostname = parts.hostname or ""
+    if parts.scheme != "https" or hostname == "localhost" or hostname.endswith(".localhost"):
+        return ""
+    try:
+        if not ipaddress.ip_address(hostname).is_global:
+            return ""
+    except ValueError:
+        pass
+    return url
 
 
 def parse_profile(payload: object, imported_at: str) -> list[dict[str, str]]:
@@ -106,15 +115,22 @@ def parse_profile(payload: object, imported_at: str) -> list[dict[str, str]]:
         if not url:
             continue
         article_id = hashlib.sha256(url.encode("utf-8")).hexdigest()[:16]
-        articles.append(
-            {
-                "id": article_id,
-                "title": clean_text(str(bookmark.get("title") or "")) or url,
-                "url": url,
-                "source": clean_text(str(bookmark.get("site_name") or "")) or source_name(url),
-                "liked_at": timestamp_date(bookmark.get("time")) or imported_at,
-            }
-        )
+        article = {
+            "id": article_id,
+            "title": clean_text(str(bookmark.get("title") or "")) or url,
+            "url": url,
+            "source": clean_text(str(bookmark.get("site_name") or "")) or source_name(url),
+            # Instapaper's public profile does not expose the like time.
+            # The first sync that sees a new item is the closest reliable value.
+            "liked_at": imported_at,
+        }
+        description = bookmark.get("description")
+        if isinstance(description, str) and description:
+            article["description"] = description
+        image = thumbnail_url(bookmark.get("og_image"))
+        if image:
+            article["image"] = image
+        articles.append(article)
     return articles
 
 
@@ -209,14 +225,25 @@ def merge_articles(existing: list[dict[str, str]], incoming: list[dict[str, str]
     merged: list[dict[str, str]] = []
     seen: set[str] = set()
     for article in incoming:
+        is_existing = article["id"] in existing_by_id
         previous = existing_by_id.get(article["id"], {})
-        merged.append({
+        merged_article = {
             "id": article["id"],
             "title": article["title"],
             "url": article["url"],
             "source": article["source"],
-            "liked_at": previous.get("liked_at") or article["liked_at"],
-        })
+        }
+        # Existing descriptions are authoritative so manual edits survive sync.
+        if is_existing and "description" in previous:
+            merged_article["description"] = previous["description"]
+        elif article.get("description"):
+            merged_article["description"] = article["description"]
+        if article.get("image"):
+            merged_article["image"] = article["image"]
+        liked_at = previous.get("liked_at") if is_existing else article.get("liked_at")
+        if liked_at:
+            merged_article["liked_at"] = liked_at
+        merged.append(merged_article)
         seen.add(article["id"])
     # Keep previously imported items that no longer appear in the current
     # profile response, but place them after the profile's current ordering.

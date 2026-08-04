@@ -1,0 +1,18 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html kind=page.page_kind %}
+</head>
+<body>
+<main>
+{% include site_header.html current=page.nav %}
+
+{{ content }}
+
+{% if page.show_footer %}{% include site_footer.html %}{% endif %}
+</main>
+{% if page.show_duration %}{% include duration_script.html %}{% endif %}
+</body>
+</html>

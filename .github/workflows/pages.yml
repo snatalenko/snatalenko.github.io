@@ -40,8 +40,8 @@ jobs:
 
       - name: Generate sitemap timestamps
         run: |
-          home_updated_at=$(git log -1 --format=%cI -- index.html reading.xml _data/reading.json _data/reading_notes.yml _config.yml _includes/site_header.html _includes/site_footer.html style.css)
-          about_updated_at=$(git log -1 --format=%cI -- about/index.html _data/resume.json _config.yml _includes/site_header.html _includes/site_footer.html style.css)
+          home_updated_at=$(git log -1 --format=%cI -- index.html reading.xml _data/reading.json _config.yml _layouts/default.html _includes/head.html _includes/person_schema.html _includes/site_header.html _includes/site_footer.html _includes/theme_init.html style.css)
+          about_updated_at=$(git log -1 --format=%cI -- about/index.html _data/resume.json _config.yml _layouts/default.html _includes/head.html _includes/person_schema.html _includes/site_header.html _includes/theme_init.html _includes/duration_script.html _includes/project.html _includes/link.html _includes/date.html _includes/range.html style.css)
           printf '{\n  "home_updated_at": "%s",\n  "about_updated_at": "%s"\n}\n' "$home_updated_at" "$about_updated_at" > _data/sitemap_meta.json
 
       - name: Configure Pages

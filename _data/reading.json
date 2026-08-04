@@ -4,125 +4,136 @@
     "title": "Fintech Engineering Handbook",
     "url": "https://w.pitula.me/fintech-engineering-handbook/",
     "source": "w.pitula.me",
-    "liked_at": "2026-06-26T21:45:03Z"
+    "description": "This resource aims to describe the most important patterns used in software engineering, where money is the primary focus of the system."
   },
   {
     "id": "fe97eee23786b810",
     "title": "What is really happening to jobs? Separating AI hype from reality",
     "url": "https://siepr.stanford.edu/publications/policy-brief/what-really-happening-jobs-separating-ai-hype-reality",
     "source": "siepr.stanford.edu",
-    "liked_at": "2026-07-29T00:47:52Z"
+    "description": "Key takeaways: AI’s effects on overall employment is likely small, though a tough job market for new graduates may be partly due to AI. AI’s impact on worker productivity is mixed but generally positive. Firm adoption has accelerated but unevenly across the economy. Early evidence is hardly the last word on the future of work in an AI world."
   },
   {
     "id": "28dac64122484c41",
     "title": "Who Owns the Code Claude Wrote?",
     "url": "https://legallayer.substack.com/p/who-owns-the-claude-code-wrote",
     "source": "substack.com",
-    "liked_at": "2026-06-28T12:49:38Z"
+    "description": "Agentic coding tools like Claude Code, Cursor, and Codex generate code that may be uncopyrightable, owned by your employer, or contaminated by open source licenses you cannot see. Some of this is settled law, some is actively contested, and this piece is clear about which is which. If you are shipping AI-assisted code and have not thought about any of this, this piece is for you.",
+    "image": "https://substackcdn.com/image/fetch/$s_!fZ2S!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4c45efbc-1881-4750-bdf5-aad04220b0a2_1456x816.png"
   },
   {
     "id": "a408a0b8f77579c7",
     "title": "Good Taste the Only Real Moat Left",
     "url": "https://rajnandan.com/posts/taste-in-the-age-of-ai-and-llms/",
     "source": "rajnandan.com",
-    "liked_at": "2026-06-20T23:17:38Z"
+    "description": "AI and LLMs have changed one thing very quickly: competent output is now cheap. A landing page can be generated in minutes. A product memo can appear in a single prompt. A pitch deck can look polished before anyone has done the hard work of deciding what the company actually believes. That is why taste has become a serious topic in tech.",
+    "image": "https://rajnandan.com/ogs/taste-in-the-age-of-ai-and-llms/og-image.jpg"
   },
   {
     "id": "6c73de39c8c9491f",
     "title": "Building An Elite AI Engineering Culture In 2026 | Chris Roth",
     "url": "https://www.cjroth.com/blog/2026-02-18-building-an-elite-engineering-culture",
     "source": "cjroth.com",
-    "liked_at": "2026-06-20T23:38:00Z"
+    "description": "The gap between elite and average teams is widening, not closing. And the practices that separate them aren't about tool selection — they're about taste, discipline, ownership, and organizational design."
   },
   {
     "id": "14974299a79dae24",
     "title": "First, Make Me Care, by Gwern · Gwern.net",
     "url": "https://gwern.net/blog/2026/make-me-care",
     "source": "gwern.net",
-    "liked_at": "2026-01-26T13:57:30Z"
+    "description": "“Venice built a maritime empire from a city that couldn’t feed itself; so who fed it—and why didn’t its enemies simply starve it out?” This sentence creates a question you want answered, and you continue reading. But most nonfiction introductions don’t do that. They start with fatal background (“Venice was founded after the fall of the Roman Empire…”), and the reader quits.",
+    "image": "https://gwern.net/static/img/logo/logo-whitebg-large-border.png"
   },
   {
     "id": "c6812909db4f6dc6",
     "title": "AI is Killing B2B SaaS",
     "url": "https://nmn.gl/blog/ai-killing-b2b-saas",
     "source": "nmn.gl",
-    "liked_at": "2026-02-05T15:10:12Z"
+    "description": "AI-built internal tools are pushing B2B SaaS toward secure, customizable platforms that customers can build upon.",
+    "image": "https://nmn.gl/blog/assets/saas-stocks.png"
   },
   {
     "id": "28fa2a7351803d02",
     "title": "Claude Code in Action",
     "url": "https://anthropic.skilljar.com/claude-code-in-action",
     "source": "anthropic.skilljar.com",
-    "liked_at": "2026-01-14T11:16:26Z"
+    "description": "Claude Code in Action teaches you to run Claude Code past the quick task and trust the result. You will scope and steer long sessions, write instructions Claude actually follows, enforce the rules that cannot be skipped, hand off work to hands-off and scheduled runs, and verify what came back when no one was watching. By the end you can point Claude at hours of work, walk away, and check what it did with confidence",
+    "image": "https://cc.sj-cdn.net/instructor/4hdejjwplbrm-anthropic/courses/3n2veylcj0hl/promo-image.1750989653.svg"
   },
   {
     "id": "199fdd6cb1c53427",
     "title": "Neural Networks: Zero To Hero",
     "url": "https://karpathy.ai/zero-to-hero.html",
     "source": "karpathy.ai",
-    "liked_at": "2026-01-06T01:02:41Z"
+    "description": "A course by Andrej Karpathy on building neural networks, from scratch, in code."
   },
   {
     "id": "a811fc0cddf9747b",
     "title": "The Next Two Years of Software Engineering",
     "url": "https://addyosmani.com/blog/next-two-years/",
     "source": "addyosmani.com",
-    "liked_at": "2026-01-12T19:53:26Z"
+    "description": "The software industry sits at a strange inflection point. AI coding has evolved from autocomplete on steroids to agents that can autonomously execute development tasks. The economic boom that fueled tech’s hiring spree has given way to an efficiency mandate: companies now often favor profitability over growth, experienced hires over fresh graduates, and smaller teams armed with better tools.",
+    "image": "https://addyosmani.com/assets/images/next-two.jpg"
   },
   {
     "id": "59442561c5185fee",
     "title": "85 Things I learned being a CEO | HackerNoon",
     "url": "https://hackernoon.com/85-things-i-learned-being-a-ceo-4c25fc1c7b99",
     "source": "hackernoon.com",
-    "liked_at": "2026-01-13T18:17:25Z"
+    "description": "",
+    "image": "https://hackernoon.imgix.net/fallback-feat.png"
   },
   {
     "id": "01b028c379ea5c48",
     "title": "Modern Node.js Patterns for 2025",
     "url": "https://kashw1n.com/blog/nodejs-2025/",
     "source": "kashw1n.com",
-    "liked_at": "2025-08-04T09:55:26Z"
+    "description": "Node.js has undergone a remarkable transformation since its early days. If you’ve been writing Node.js for several years, you’ve likely witnessed this evolution firsthand—from the callback-heavy, CommonJS-dominated landscape to today’s clean, standards-based development experience. The changes aren’t just cosmetic; they represent a fundamental shift in how we approach server-side JavaScript develo"
   },
   {
     "id": "c2d8873d1af1970f",
     "title": "https://ai-2027.com/",
     "url": "https://ai-2027.com/",
     "source": "ai-2027.com",
-    "liked_at": "2025-05-29T08:19:33Z"
+    "description": "We predict that the impact of superhuman AI over the next decade will be enormous, exceeding that of the Industrial Revolution. We wrote a scenario that represents our best guess about what that might look like.1 It’s informed by trend extrapolations, wargames, expert feedback, experience at OpenAI, and previous forecasting successes.2 The CEOs of OpenAI, Google DeepMind, and Anthropic have all pr",
+    "image": "https://ai-2027.com/opengraph.png"
   },
   {
     "id": "9de579310214235f",
     "title": "Tech employees are getting the message: Playtime's over",
     "url": "https://www.businessinsider.com/tech-industry-amazon-microsoft-meta-google-companies-intensity-hardcore-2025-3",
     "source": "businessinsider.com",
-    "liked_at": "2025-05-25T12:28:59Z"
+    "description": "For years, Shopify CEO Tobi Lütke enjoyed a reputation for growing the $125 billion e-commerce company without working the grueling hours expected of startup founders. \"My job is incredible, but it's also just a job. Family and personal health rank higher in my priority list,\" he wrote in a now-deleted post on X, then Twitter, shortly before the pandemic, as reported by Business Insider at the tim",
+    "image": "https://i.insider.com/67dad12d69253ccddf99add0?width=1200&format=jpeg"
   },
   {
     "id": "a57231b3fc8e3269",
     "title": "How to ask good questions - Julia Evans",
     "url": "https://jvns.ca/blog/good-questions/",
     "source": "jvns.ca",
-    "liked_at": "2017-01-03T08:21:07Z"
+    "description": "Asking good questions is a super important skill when writing software. I’ve gotten way better at it over the years (to the extent that it’s something my coworkers comment on a lot). Here are a few guidelines that have worked well for me! I’m actually kind of a big believer in asking dumb questions or questions that aren’t “good”. I ask people kind of dumb questions all the time, questions that I "
   },
   {
     "id": "0bd2cb76b9a33b32",
     "title": "How to start a startup without ruining your life",
     "url": "https://www.superhi.com/blog/how-to-start-a-startup-without-ruining-your-life",
     "source": "superhi.com",
-    "liked_at": "2017-02-10T10:01:59Z"
+    "description": "This is an update on my previous article I wrote back in 2014. Nearly three years have passed since the article and I wanted to update and give better, more up-to-date advice. For 6 years, I worked solely at startups. My role was “the coder” — the person the brave hired to turn ideas into “real” businesses. I never had the inclination to start my own because why would I risk a comfortable life to ",
+    "image": "https://superhi-contentful.imgix.net/3xZOL8txJYHkO9No44hHpe/bda82fd2210bc08693797de576f657f9/blog-how-to-start-a-startup-social.png?ixlib=js-2.3.2&fit=crop&auto=format&w=1920&h=1080&fm=png8"
   },
   {
     "id": "6e11c74232827c8d",
     "title": "Kent Beck : “I get paid for code that works, not for tests”",
     "url": "https://istacee.wordpress.com/2013/09/18/kent-beck-i-get-paid-for-code-that-works-not-for-tests/",
     "source": "istacee.wordpress.com",
-    "liked_at": "2017-01-04T13:12:34Z"
+    "description": "I get paid for code that works, not for tests, so my philosophy is to test as little as possible to reach a given level of confidence",
+    "image": "https://istacee.wordpress.com/wp-content/uploads/2019/08/cropped-capture-1.jpg?w=200"
   },
   {
     "id": "97d73f81f0ba066a",
     "title": "Breakout Career Guide",
     "url": "https://breakoutcareers.com/",
     "source": "breakoutcareers.com",
-    "liked_at": "2015-07-22T22:53:06Z"
+    "description": "breakout list hasn't been updated in AGES. it's been STAGNATING. if you aren't familiar with BL, it used to be great. doordash was picked for the list at ~60 employees (now $90B public co), slack at 100 employees, affirm at 35, gusto at 50, robinhood at 15, coinbase at 50, instacart at 40. now i'm thinking about a new list here's some notes. and in the meantime, feel free to dm me questions, thoug"
   }
 ]

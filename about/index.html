@@ -1,64 +1,11 @@
 ---
-layout: null
+layout: default
+page_kind: about
+nav: about
+show_duration: true
 ---
 {% assign resume = site.data.resume %}
 {% assign basics = resume.basics %}
-{% assign current_job = resume.work | first %}
-{% assign masters = nil %}
-{% for education in resume.education %}
-  {% assign study_type = education.studyType | downcase %}
-  {% if study_type contains "master" %}
-    {% assign masters = education %}
-    {% break %}
-  {% endif %}
-{% endfor %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ basics.name | escape }} - {{ basics.label | escape }}</title>
-<meta name="description" content="{{ basics.summary | escape }}">
-<meta name="author" content="{{ basics.name | escape }}">
-<link rel="canonical" href="{{ basics.url | escape }}/about/">
-<link rel="alternate" type="application/rss+xml" href="/reading.xml" title="{{ site.reading.title | escape }}">
-<link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
-<meta property="og:type" content="profile">
-<meta property="og:title" content="{{ basics.name | escape }}">
-<meta property="og:description" content="{{ basics.summary | escape }}">
-<meta property="og:url" content="{{ basics.url | escape }}/about/">
-<meta property="og:image" content="{{ basics.image | escape }}">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": {{ basics.name | jsonify }},
-  "url": {{ basics.url | jsonify }},
-  "image": {{ basics.image | jsonify }},
-  "sameAs": [
-    {% for profile in basics.profiles %}{{ profile.url | jsonify }}{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ]{% if current_job.position %},
-  "jobTitle": {{ current_job.position | jsonify }}{% endif %}{% if current_job.name %},
-  "worksFor": {
-    "@type": "Organization",
-    "name": {{ current_job.name | jsonify }}{% if current_job.url %},
-    "url": {{ current_job.url | jsonify }}{% endif %}
-  }{% endif %}{% if masters.institution %},
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": {{ masters.institution | jsonify }}
-  }{% endif %}{% if basics.summary %},
-  "description": {{ basics.summary | jsonify }}{% endif %}
-}
-</script>
-{% include theme_init.html %}
-<link rel="stylesheet" href="/style.css">
-</head>
-<body>
-<main>
-{% include site_header.html current="about" %}
 
 {% if basics %}
 <header class="header about-header">
@@ -169,45 +116,3 @@ layout: null
   {% endfor %}
 </section>
 {% endif %}
-
-{% if resume.skills.size > 0 %}
-<section aria-labelledby="skills-h">
-  <h2 id="skills-h">Skills</h2>
-  <dl class="skills">
-    {% for skill in resume.skills %}{% if skill.keywords.size > 0 or skill.name %}
-    <dt>{{ skill.name | escape }}</dt>
-    <dd>{{ skill.keywords | join: ", " | escape }}</dd>
-    {% endif %}{% endfor %}
-  </dl>
-</section>
-{% endif %}
-
-{% if resume.languages.size > 0 %}
-<section aria-labelledby="languages-h">
-  <h2 id="languages-h">Languages</h2>
-  <p class="entry-sub">{% for language in resume.languages %}{{ language.language | escape }}: {{ language.fluency | escape }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
-</section>
-{% endif %}
-</main>
-<script>
-(() => {
-  const duration = (start, end) => {
-    if (!start) return '';
-    const [sy, sm = '1'] = start.split('-');
-    const now = new Date();
-    const [ey, em] = end ? end.split('-') : [String(now.getFullYear()), String(now.getMonth() + 1)];
-    const total = (Number(ey) - Number(sy)) * 12 + (Number(em) - Number(sm));
-    if (total < 0) return '';
-    if (total < 12) return total + ' ' + (total === 1 ? 'mo' : 'mos');
-    const yrs = Math.round((total / 12) * 2) / 2;
-    return (Number.isInteger(yrs) ? String(yrs) : yrs.toFixed(1)) + ' ' + (yrs === 1 ? 'yr' : 'yrs');
-  };
-
-  document.querySelectorAll('[data-duration-start]').forEach((el) => {
-    const text = duration(el.dataset.durationStart, el.dataset.durationEnd);
-    if (text) el.textContent = ' · ' + text;
-  });
-})();
-</script>
-</body>
-</html>

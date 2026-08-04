@@ -1,0 +1,33 @@
+{% assign resume = site.data.resume %}
+{% assign basics = resume.basics %}
+{% if include.kind == "about" %}
+  {% capture head_title %}{{ basics.name }} - {{ basics.label }}{% endcapture %}
+  {% assign head_description = basics.summary %}
+  {% assign canonical_path = "/about/" %}
+  {% assign open_graph_type = "profile" %}
+  {% assign open_graph_title = basics.name %}
+{% else %}
+  {% assign head_title = site.reading.title %}
+  {% assign head_description = site.reading.description %}
+  {% assign canonical_path = "/" %}
+  {% assign open_graph_type = "website" %}
+  {% assign open_graph_title = site.reading.title %}
+{% endif %}
+{% assign canonical_url = basics.url | append: canonical_path %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ head_title | strip | escape }}</title>
+<meta name="description" content="{{ head_description | escape }}">
+<meta name="author" content="{{ basics.name | escape }}">
+<link rel="canonical" href="{{ canonical_url | escape }}">
+<link rel="alternate" type="application/rss+xml" href="/reading.xml" title="{{ site.reading.title | escape }}">
+<link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
+<meta property="og:type" content="{{ open_graph_type }}">
+<meta property="og:title" content="{{ open_graph_title | escape }}">
+<meta property="og:description" content="{{ head_description | escape }}">
+<meta property="og:url" content="{{ canonical_url | escape }}">
+<meta property="og:image" content="{{ basics.image | escape }}">
+<meta name="twitter:card" content="summary">
+{% include person_schema.html detailed=include.kind %}
+{% include theme_init.html %}
+<link rel="stylesheet" href="/style.css">

@@ -1,44 +1,10 @@
 ---
-layout: null
+layout: default
+page_kind: reading
+nav: recommendations
+show_footer: true
 ---
-{% assign resume = site.data.resume %}
-{% assign basics = resume.basics %}
 {% assign reading = site.data.reading %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ site.reading.title | escape }}</title>
-<meta name="description" content="{{ site.reading.description | escape }}">
-<meta name="author" content="{{ basics.name | escape }}">
-<link rel="canonical" href="{{ basics.url | escape }}/">
-<link rel="alternate" type="application/rss+xml" href="/reading.xml" title="{{ site.reading.title | escape }}">
-<link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
-<meta property="og:type" content="website">
-<meta property="og:title" content="{{ site.reading.title | escape }}">
-<meta property="og:description" content="{{ site.reading.description | escape }}">
-<meta property="og:url" content="{{ basics.url | escape }}/">
-<meta property="og:image" content="{{ basics.image | escape }}">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": {{ basics.name | jsonify }},
-  "url": {{ basics.url | jsonify }},
-  "image": {{ basics.image | jsonify }},
-  "sameAs": [{% for profile in basics.profiles %}{{ profile.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
-  "description": {{ basics.summary | jsonify }}
-}
-</script>
-{% include theme_init.html %}
-<link rel="stylesheet" href="/style.css">
-</head>
-<body>
-<main>
-{% include site_header.html current="recommendations" %}
-
 <header class="page-header">
   <p class="page-intro">{{ site.reading.description | escape }}</p>
 </header>
@@ -47,13 +13,20 @@ layout: null
   {% if reading.size > 0 %}
     <div class="recommendation-list">
     {% for article in reading %}
-      {% assign article_id = article.id | append: "" %}
-      {% assign note = site.data.reading_notes[article_id] %}
       <article class="recommendation" id="reading-{{ article.id | escape }}">
-        <h2 class="recommendation-title">{% include link.html href=article.url text=article.title %}</h2>
-        {% if article.source or article.liked_at %}<p class="recommendation-meta">{% if article.source %}{{ article.source | escape }}{% if article.liked_at %} · {% endif %}{% endif %}{% if article.liked_at %}{% include date.html value=article.liked_at %}{% endif %}</p>{% endif %}
-        {% if note and note.thought %}<p class="recommendation-thought">{{ note.thought | escape }}</p>{% endif %}
-        {% if note and note.tags.size > 0 %}<p class="recommendation-tags">{{ note.tags | join: " · " | escape }}</p>{% endif %}
+        <div class="recommendation-content">
+          <div class="recommendation-copy">
+            <h2 class="recommendation-title">{% include link.html href=article.url text=article.title %}</h2>
+            {% if article.source or article.liked_at %}<p class="recommendation-meta">{% if article.source %}{{ article.source | escape }}{% if article.liked_at %} · {% endif %}{% endif %}{% if article.liked_at %}{% include date.html value=article.liked_at %}{% endif %}</p>{% endif %}
+            {% if article.description %}{% assign rendered_description = article.description | strip %}{% assign description_last_character = rendered_description | slice: -1, 1 %}<p class="recommendation-description">{{ rendered_description | escape }}{% unless description_last_character == "." %}...{% endunless %}</p>{% endif %}
+          </div>
+          {% if article.image %}
+            {% assign image_prefix = article.image | slice: 0, 8 %}
+            {% assign image_parts = article.image | split: "/" %}
+            {% assign image_host = image_parts[2] %}
+            {% if image_prefix == "https://" and image_host != "localhost:10000" %}<a class="recommendation-thumbnail" href="{{ article.url | escape }}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="{{ article.image | escape }}" alt="" width="112" height="72" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>{% endif %}
+          {% endif %}
+        </div>
       </article>
     {% endfor %}
     </div>
@@ -61,8 +34,3 @@ layout: null
     <p class="empty-state">No recommendations yet.</p>
   {% endif %}
 </section>
-
-{% include site_footer.html %}
-</main>
-</body>
-</html>

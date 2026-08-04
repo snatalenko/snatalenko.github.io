@@ -1,0 +1,32 @@
+{% assign resume = site.data.resume %}
+{% assign basics = resume.basics %}
+{% assign current_job = resume.work | first %}
+{% assign masters = nil %}
+{% for education in resume.education %}
+  {% assign study_type = education.studyType | downcase %}
+  {% if study_type contains "master" %}
+    {% assign masters = education %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ basics.name | jsonify }},
+  "url": {{ basics.url | jsonify }},
+  "image": {{ basics.image | jsonify }},
+  "sameAs": [{% for profile in basics.profiles %}{{ profile.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% if include.detailed == "about" and current_job.position %},
+  "jobTitle": {{ current_job.position | jsonify }}{% endif %}{% if include.detailed == "about" and current_job.name %},
+  "worksFor": {
+    "@type": "Organization",
+    "name": {{ current_job.name | jsonify }}{% if current_job.url %},
+    "url": {{ current_job.url | jsonify }}{% endif %}
+  }{% endif %}{% if include.detailed == "about" and masters.institution %},
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": {{ masters.institution | jsonify }}
+  }{% endif %}{% if basics.summary %},
+  "description": {{ basics.summary | jsonify }}{% endif %}
+}
+</script>

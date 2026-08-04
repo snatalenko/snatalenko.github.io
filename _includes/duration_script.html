@@ -1,0 +1,20 @@
+<script>
+(() => {
+  const duration = (start, end) => {
+    if (!start) return '';
+    const [sy, sm = '1'] = start.split('-');
+    const now = new Date();
+    const [ey, em] = end ? end.split('-') : [String(now.getFullYear()), String(now.getMonth() + 1)];
+    const total = (Number(ey) - Number(sy)) * 12 + (Number(em) - Number(sm));
+    if (total < 0) return '';
+    if (total < 12) return total + ' ' + (total === 1 ? 'mo' : 'mos');
+    const yrs = Math.round((total / 12) * 2) / 2;
+    return (Number.isInteger(yrs) ? String(yrs) : yrs.toFixed(1)) + ' ' + (yrs === 1 ? 'yr' : 'yrs');
+  };
+
+  document.querySelectorAll('[data-duration-start]').forEach((el) => {
+    const text = duration(el.dataset.durationStart, el.dataset.durationEnd);
+    if (text) el.textContent = ' · ' + text;
+  });
+})();
+</script>

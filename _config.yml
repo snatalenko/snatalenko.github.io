@@ -3,7 +3,7 @@ projects_visible: 3
 
 reading:
   title: "Stanislav Natalenko - Recommended reading"
-  description: "Articles worth returning to on software, AI, engineering culture, and product development."
+  description: "Articles worth returning to on software product development."
   feed_limit: 50
 
 exclude:

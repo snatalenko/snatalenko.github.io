@@ -5,9 +5,6 @@ nav: recommendations
 show_footer: true
 ---
 {% assign reading = site.data.reading %}
-<header class="page-header">
-  <p class="page-intro">{{ site.reading.description | escape }}</p>
-</header>
 
 <section aria-label="Reading recommendations" class="reading-section">
   {% if reading.size > 0 %}

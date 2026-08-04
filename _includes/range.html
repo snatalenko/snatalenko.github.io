@@ -1,9 +1,9 @@
 {%- if include.start -%}
-  {%- include date.html value=include.start -%}
   {%- if include.end -%}
-    {{ " – " }}{%- include date.html value=include.end -%}
+    {%- include date.html value=include.start -%}
+    {{ " - " }}{%- include date.html value=include.end -%}
   {%- else -%}
-    {{ " – Present" }}
+    {{ "Since " }}{%- include date.html value=include.start -%}
   {%- endif -%}
 {%- elsif include.end -%}
   {%- include date.html value=include.end -%}

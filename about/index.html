@@ -53,6 +53,7 @@ layout: null
   "description": {{ basics.summary | jsonify }}{% endif %}
 }
 </script>
+{% include theme_init.html %}
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -187,7 +188,6 @@ layout: null
   <p class="entry-sub">{% for language in resume.languages %}{{ language.language | escape }} — {{ language.fluency | escape }}{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
 </section>
 {% endif %}
-{% include site_footer.html %}
 </main>
 <script>
 (() => {

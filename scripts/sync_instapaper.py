@@ -104,7 +104,7 @@ def thumbnail_url(value: object) -> str:
     return url
 
 
-def parse_profile(payload: object, imported_at: str) -> list[dict[str, str]]:
+def parse_profile(payload: object) -> list[dict[str, str]]:
     if not isinstance(payload, dict) or not isinstance(payload.get("bookmarks"), list):
         raise ValueError("Instapaper profile response did not contain bookmarks")
     articles: list[dict[str, str]] = []
@@ -120,9 +120,6 @@ def parse_profile(payload: object, imported_at: str) -> list[dict[str, str]]:
             "title": clean_text(str(bookmark.get("title") or "")) or url,
             "url": url,
             "source": clean_text(str(bookmark.get("site_name") or "")) or source_name(url),
-            # Instapaper's public profile does not expose the like time.
-            # The first sync that sees a new item is the closest reliable value.
-            "liked_at": imported_at,
         }
         description = bookmark.get("description")
         if isinstance(description, str) and description:
@@ -134,7 +131,7 @@ def parse_profile(payload: object, imported_at: str) -> list[dict[str, str]]:
     return articles
 
 
-def parse_feed(xml: bytes, imported_at: str) -> list[dict[str, str]]:
+def parse_feed(xml: bytes) -> list[dict[str, str]]:
     root = ET.fromstring(xml)
     entries = [node for node in root.iter() if local_name(node.tag) in {"item", "entry"}]
     articles: list[dict[str, str]] = []
@@ -145,15 +142,16 @@ def parse_feed(xml: bytes, imported_at: str) -> list[dict[str, str]]:
         title = child_text(entry, ("title",)) or url
         date_value = child_text(entry, ("pubdate", "date", "published", "updated"))
         article_id = hashlib.sha256(url.encode("utf-8")).hexdigest()[:16]
-        articles.append(
-            {
-                "id": article_id,
-                "title": title,
-                "url": url,
-                "source": source_name(url),
-                "liked_at": normalized_date(date_value) or imported_at,
-            }
-        )
+        article = {
+            "id": article_id,
+            "title": title,
+            "url": url,
+            "source": source_name(url),
+        }
+        liked_at = normalized_date(date_value)
+        if liked_at:
+            article["liked_at"] = liked_at
+        articles.append(article)
     return articles
 
 
@@ -200,12 +198,12 @@ def fetch_profile_page(username: str, page: int) -> dict[str, object]:
     return payload
 
 
-def fetch_profile(profile_url: str, imported_at: str) -> list[dict[str, str]]:
+def fetch_profile(profile_url: str) -> list[dict[str, str]]:
     username = profile_id(profile_url)
     articles: list[dict[str, str]] = []
     for page in range(1, MAX_PROFILE_PAGES + 1):
         payload = fetch_profile_page(username, page)
-        articles.extend(parse_profile(payload, imported_at))
+        articles.extend(parse_profile(payload))
         if not payload.get("has_next"):
             return articles
     raise ValueError(f"Instapaper profile exceeded {MAX_PROFILE_PAGES} pages")
@@ -220,7 +218,9 @@ def load_archive(path: Path) -> list[dict[str, str]]:
     return data
 
 
-def merge_articles(existing: list[dict[str, str]], incoming: list[dict[str, str]]) -> list[dict[str, str]]:
+def merge_articles(
+    existing: list[dict[str, str]], incoming: list[dict[str, str]], imported_at: str
+) -> list[dict[str, str]]:
     existing_by_id = {article["id"]: article for article in existing if article.get("id")}
     merged: list[dict[str, str]] = []
     seen: set[str] = set()
@@ -240,7 +240,12 @@ def merge_articles(existing: list[dict[str, str]], incoming: list[dict[str, str]
             merged_article["description"] = article["description"]
         if article.get("image"):
             merged_article["image"] = article["image"]
-        liked_at = previous.get("liked_at") if is_existing else article.get("liked_at")
+        # Once recorded, liked_at is immutable. Instapaper's public profile does
+        # not expose the actual like time, so only newly discovered items receive
+        # the current import time. RSS dates are used only for new items.
+        liked_at = (
+            previous.get("liked_at") if is_existing else article.get("liked_at") or imported_at
+        )
         if liked_at:
             merged_article["liked_at"] = liked_at
         merged.append(merged_article)
@@ -267,14 +272,14 @@ def main() -> int:
     imported_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
     if args.input:
         xml = args.input.read_bytes()
-        incoming = parse_feed(xml, imported_at)
+        incoming = parse_feed(xml)
     elif args.profile_json:
-        incoming = parse_profile(json.loads(args.profile_json.read_bytes()), imported_at)
+        incoming = parse_profile(json.loads(args.profile_json.read_bytes()))
     else:
-        incoming = fetch_profile(args.profile_url, imported_at)
+        incoming = fetch_profile(args.profile_url)
     if not incoming:
         raise ValueError("Instapaper contained no usable article links")
-    merged = merge_articles(load_archive(args.output), incoming)
+    merged = merge_articles(load_archive(args.output), incoming, imported_at)
     rendered = json.dumps(merged, ensure_ascii=False, indent=2) + "\n"
     args.output.parent.mkdir(parents=True, exist_ok=True)
     if not args.output.exists() or args.output.read_text(encoding="utf-8") != rendered:

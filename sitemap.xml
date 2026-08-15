@@ -5,15 +5,11 @@ permalink: /sitemap.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://natalenko.com/</loc>
+    <loc>https://natalenko.com</loc>
     <lastmod>{{ site.data.sitemap_meta.home_updated_at | xml_escape }}</lastmod>
   </url>
   <url>
     <loc>https://natalenko.com/about/</loc>
     <lastmod>{{ site.data.sitemap_meta.about_updated_at | xml_escape }}</lastmod>
-  </url>
-  <url>
-    <loc>https://natalenko.com/morphos/</loc>
-    <lastmod>2026-05-20</lastmod>
   </url>
 </urlset>

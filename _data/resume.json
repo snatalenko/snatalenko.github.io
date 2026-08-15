@@ -243,7 +243,7 @@
     {
       "name": "node-cqrs",
       "description": "CQRS/Event Sourcing toolkit for Node.js with DI, sagas, projections, and optional common stack adapters",
-      "url": "https://node-cqrs.org/",
+      "url": "https://node-cqrs.org",
       "keywords": [
         "CQRS",
         "Event-Sourcing",
@@ -260,7 +260,7 @@
     {
       "name": "morphos",
       "description": "JSON-to-JSON mapper with user-defined JSON mapping specs, plain JS transformation expressions, and secure VM execution",
-      "url": "https://natalenko.com/morphos/",
+      "url": "https://morphosjs.org",
       "keywords": [
         "Mapping",
         "Transformations",

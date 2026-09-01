@@ -1,5 +1,14 @@
 [
   {
+    "id": "a3d40848cd03fefd",
+    "title": "Just a rumour of a bug is enough to find a security exploit these days",
+    "url": "https://anil.recoil.org/notes/rumour-is-the-exploit",
+    "source": "anil.recoil.org",
+    "description": "I released a security fix for OCaml's cohttp 6.3.0 today, fixing a path traversal issue. The patch itself was straightforward and in normal times, the security procedure would have been to fix it privately, inform affected users, and then issue a public advisory. This time around though, I noticed probes in my live webserver logs with the exact bug pattern just minutes after opening the PR to fix ",
+    "image": "https://anil.recoil.org/images/vulncheck-2026.640.webp",
+    "liked_at": "2026-09-01T12:04:19Z"
+  },
+  {
     "id": "d10ea54f06e0c371",
     "title": "AI is removing the middle class of software engineering",
     "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",

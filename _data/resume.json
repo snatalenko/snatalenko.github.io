@@ -3,10 +3,10 @@
   "basics": {
     "name": "Stanislav Natalenko",
     "label": "CTO at BanQu Inc.",
-    "image": "https://www.gravatar.com/avatar/94ce00f9b879e3e256d0dbfce343ed9b?s=400&d=mp",
+    "image": "https://natalenko.com/assets/avatar.jpg",
     "email": "lychee.judge.1b@icloud.com",
     "url": "https://natalenko.com",
-    "summary": "Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on three distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.",
+    "summary": "Engineering executive with 20+ years architecting distributed, event-sourced platforms from prototype to production scale. Currently CTO and Chief Architect at BanQu, leading the supply-chain transparency platform serving global enterprises. Inventor on granted US and European distributed-ledger patents and author of open-source toolkits for CQRS, Event Sourcing, and data transformation.",
     "profiles": [
       {
         "network": "GitHub",
@@ -23,86 +23,68 @@
   "work": [
     {
       "name": "BanQu",
-      "description": "Supply-chain transparency platform built on distributed-ledger technology, serving global enterprise customers",
+      "logo": "/assets/logos/banqu.png",
       "url": "https://banqu.co",
       "location": "Minneapolis, MN · Remote",
       "position": "CTO, VP Engineering, Architect",
       "startDate": "2015-06",
-      "highlights": [
-        "Lead a distributed team of senior engineers and QA specialists across multiple geographies, owning architecture, product direction, and delivery.",
-        "Built and operate the event-sourced platform powering 10M+ supply-chain events across global enterprise customers.",
-        "Named inventor on three distributed-ledger patents underpinning the BanQu system."
-      ]
+      "summary": "Owned architecture, product direction and delivery, leading a small distributed team of engineers and QA while influencing technical decisions across adjacent teams. Led hiring and maintained lightweight engineering processes. Designed and operated an event-sourced platform that processed 10M+ supply-chain events for global enterprise customers."
     },
     {
       "name": "API Nation",
-      "description": "Workflow automation and data-integration platform connecting business tools across the real estate industry.",
+      "logo": "/assets/logos/apination.svg",
+      "description": "Workflow automation and data-integration platform for the real estate industry",
       "url": "https://apination.com",
       "location": "San Diego, CA · Remote",
       "position": "Consulting Software Architect",
       "startDate": "2015-05",
       "endDate": "2016-08",
-      "highlights": [
-        "Architected and built the integration platform's processing core on AWS Lambda and RabbitMQ with a set of orchestrator services, enabling massively parallel, on-demand processing of large data volumes."
-      ]
+      "summary": "Designed and built the processing core of the integration platform: a set of orchestrator services on AWS Lambda and RabbitMQ that process large data volumes in parallel, on demand."
     },
     {
       "name": "SpiderSuite",
-      "description": "Enterprise cloud and mobile inspection management platform for the commercial real estate industry, connecting banks, lenders, servicers, inspection companies, and field inspectors",
+      "logo": "/assets/logos/spidersuite.png",
+      "description": "Cloud and mobile inspection management platform for commercial real estate lenders",
       "location": "Minneapolis, MN · Remote",
       "position": "Co-founder and CTO",
       "startDate": "2012-02",
       "endDate": "2017-06",
-      "highlights": [
-        "Co-founded and grew the company from concept to a production platform serving the commercial real estate lending market.",
-        "Led end-to-end creation of an enterprise product, from initial concept and architecture through production launch.",
-        "Owned product UX, designing the majority of user-facing interfaces with a strong focus on usability and clarity.",
-        "Architected and implemented a scalable, message-driven platform following DDD, CQRS, and API-first principles.",
-        "Designed and built a responsive single-page web application with reliable offline and online operation.",
-        "Delivered a production-ready iOS application integrated with the core platform in under three months.",
-        "Established and enforced company-wide information security, disaster recovery, and business continuity standards.",
-        "Implemented high-availability infrastructure with multi-cloud failover across Azure and AWS."
-      ]
+      "summary": "Co-founded the company and took the product from an idea to a production platform serving the commercial real estate lending market. Owned architecture and UX for a message-driven, API-first platform, and set up its security, disaster recovery and multi-cloud failover across Azure and AWS."
     },
     {
       "name": "SPS Commerce",
-      "description": "Cloud-based supply-chain management software for retailers, suppliers, third-party logistics providers, and partners",
+      "logo": "/assets/logos/spscommerce.png",
+      "description": "Cloud supply-chain management and EDI network for retailers and suppliers",
       "url": "https://spscommerce.com",
       "location": "Kharkiv, Ukraine",
-      "position": "Product Lead and Scrum Master",
+      "position": "Product Lead",
       "startDate": "2011-05",
       "endDate": "2012-09",
-      "highlights": [
-        "Led development of the SPSC Universal Data Adapter, a turnkey integration product for exchanging data with a variety of ERP systems.",
-        "Facilitated the merge of Direct EDI and SPS Commerce engineering teams post-acquisition, transitioning SPSC product development to the Ukraine office and rolling out Agile Scrum across the merged team."
-      ]
+      "summary": "After the acquisition, merged the Direct EDI and SPS Commerce engineering teams and led development of the SPS products transferred to the Ukraine office."
     },
     {
       "name": "Direct EDI",
-      "description": "E-commerce solutions for supply-chain network integration, ranging from web-based EDI to fully integrated enterprise systems. Acquired by SPS Commerce",
+      "logo": "/assets/logos/directedi.jpg",
+      "description": "Web-based EDI and supply-chain integration solutions. Acquired by SPS Commerce",
       "url": "http://directedi.com",
       "location": "Kharkiv, Ukraine",
       "position": "Tech Lead and Software Architect",
       "startDate": "2008-06",
       "endDate": "2011-05",
-      "highlights": [
-        "Led or directly developed 5 of 7 core products, owning the full lifecycle from concept through launch and ongoing support.",
-        "Built, hired, and managed multiple cross-functional technology teams composed primarily of senior engineers, QA specialists, and UI designers.",
-        "Drove the transition from Waterfall to Agile Scrum across the entire technology organization."
-      ]
+      "summary": "Led or built 5 of the company's 7 core products. Hired and ran a technology organization of about 20 people, managing some teams directly and others through their team leads, and moved it to Scrum along the way."
     },
     {
       "name": "Direct EDI",
+      "logo": "/assets/logos/directedi.jpg",
       "location": "Kharkiv, Ukraine",
       "position": "Project Coordinator",
       "startDate": "2007-10",
       "endDate": "2008-06",
-      "highlights": [
-        "Planned, coordinated, and controlled delivery across stakeholders in the San Diego PMO, enterprise customers, and the Ukrainian development team."
-      ]
+      "summary": "Planned and coordinated delivery between the San Diego PMO, enterprise customers and the development team in Ukraine."
     },
     {
       "name": "Direct EDI",
+      "logo": "/assets/logos/directedi.jpg",
       "location": "Kharkiv, Ukraine",
       "position": "R&D Developer",
       "startDate": "2004-05",
@@ -112,6 +94,8 @@
   "education": [
     {
       "institution": "Kharkiv National University of Radio Electronics",
+      "url": "https://nure.ua",
+      "logo": "/assets/logos/nure.png",
       "area": "Computer Systems and Networks",
       "studyType": "Master of Science",
       "startDate": "2006",
@@ -131,22 +115,65 @@
       "name": "Defining and managing forms in a distributed ledger trust network",
       "publisher": "USPTO",
       "releaseDate": "2026-02-10",
-      "url": "https://patents.google.com/patent/US20220060330A1/en",
-      "summary": "Patent US20220060330A1"
+      "url": "https://patents.google.com/patent/US12549375B2/en",
+      "patents": [
+        {
+          "office": "USPTO",
+          "number": "US12549375B2",
+          "url": "https://patents.google.com/patent/US12549375B2/en"
+        }
+      ]
+    },
+    {
+      "name": "Managing permissions to access user data in a distributed ledger trust network",
+      "publisher": "USPTO, EPO",
+      "releaseDate": "2024-10-08",
+      "url": "https://patents.google.com/patent/US12113781B2/en",
+      "patents": [
+        {
+          "office": "USPTO",
+          "number": "US12113781B2",
+          "url": "https://patents.google.com/patent/US12113781B2/en"
+        },
+        {
+          "office": "EPO",
+          "number": "EP3881271B1",
+          "url": "https://patents.google.com/patent/EP3881271B1/en"
+        }
+      ]
     },
     {
       "name": "Blockchain-based identity and transaction platform",
-      "publisher": "EPO",
+      "publisher": "EPO, USPTO",
       "releaseDate": "2024-08-14",
       "url": "https://patents.google.com/patent/EP3362970B1/en",
-      "summary": "Patent EP3362970B1 16855952.4 - 1217 PCT/US2016054920"
+      "patents": [
+        {
+          "office": "EPO",
+          "number": "EP3362970B1",
+          "url": "https://patents.google.com/patent/EP3362970B1/en"
+        },
+        {
+          "office": "USPTO",
+          "number": "US12244719B1",
+          "url": "https://patents.google.com/patent/US12244719B1/en"
+        }
+      ]
     },
     {
       "name": "Transaction authorization and verification through distributed-ledger-based chain of custody",
       "publisher": "EPO",
       "releaseDate": "2023-04-25",
       "url": "https://patents.google.com/patent/EP4270864A1/en",
-      "summary": "Patent EP4270864A1 (filed). Decentralized chain-of-custody for asset-anchored transactions, with geolocation-bound transactable credits recorded in a distributed ledger."
+      "summary": "Decentralized chain-of-custody for asset-anchored transactions, with geolocation-bound transactable credits recorded in a distributed ledger.",
+      "patents": [
+        {
+          "office": "EPO",
+          "number": "EP4270864A1",
+          "url": "https://patents.google.com/patent/EP4270864A1/en",
+          "status": "pending"
+        }
+      ]
     }
   ],
   "skills": [
@@ -242,6 +269,7 @@
   "projects": [
     {
       "name": "node-cqrs",
+      "logo": "/assets/logos/node-cqrs.png",
       "description": "CQRS/Event Sourcing toolkit for Node.js with DI, sagas, projections, and optional common stack adapters",
       "url": "https://node-cqrs.org",
       "keywords": [
@@ -249,6 +277,7 @@
         "Event-Sourcing",
         "TypeScript",
         "SQLite",
+        "PostgreSQL",
         "MongoDB",
         "RabbitMQ",
         "Redis",
@@ -259,12 +288,15 @@
     },
     {
       "name": "morphos",
+      "logo": "/assets/logos/morphos.svg",
       "description": "JSON-to-JSON mapper with user-defined JSON mapping specs, plain JS transformation expressions, and secure VM execution",
       "url": "https://morphosjs.org",
       "keywords": [
         "Mapping",
         "Transformations",
-        "TypeScript"
+        "JSON Schema",
+        "TypeScript",
+        "AI"
       ],
       "startDate": "2016-05"
     },

@@ -6,7 +6,8 @@ show_footer: true
 ---
 {% assign reading = site.data.reading %}
 
-<section aria-label="Reading recommendations" class="reading-section">
+<h1 class="visually-hidden" id="reading-h">Recommended reading</h1>
+<section aria-labelledby="reading-h" class="reading-section">
   {% if reading.size > 0 %}
     <div class="recommendation-list">
     {% for article in reading %}

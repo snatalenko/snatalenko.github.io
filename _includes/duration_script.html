@@ -4,17 +4,25 @@
     if (!start) return '';
     const [sy, sm = '1'] = start.split('-');
     const now = new Date();
-    const [ey, em] = end ? end.split('-') : [String(now.getFullYear()), String(now.getMonth() + 1)];
+    const [ey, em = '1'] = end ? end.split('-') : [String(now.getFullYear()), String(now.getMonth() + 1)];
     const total = (Number(ey) - Number(sy)) * 12 + (Number(em) - Number(sm));
-    if (total < 0) return '';
+    if (total < 1) return '';
     if (total < 12) return total + ' ' + (total === 1 ? 'mo' : 'mos');
     const yrs = Math.round((total / 12) * 2) / 2;
     return (Number.isInteger(yrs) ? String(yrs) : yrs.toFixed(1)) + ' ' + (yrs === 1 ? 'yr' : 'yrs');
   };
 
+  // Rewrites the server-rendered range ("May 2015 - Aug 2016") as "1.5 yrs since May 2015",
+  // keeping the full range available as a tooltip
   document.querySelectorAll('[data-duration-start]').forEach((el) => {
     const text = duration(el.dataset.durationStart, el.dataset.durationEnd);
-    if (text) el.textContent = ' · ' + text;
+    const startTime = el.querySelector('time');
+    if (!text || !startTime) return;
+    el.title = el.textContent.trim();
+    const length = document.createElement('span');
+    length.className = 'duration-length';
+    length.textContent = text;
+    el.replaceChildren(length, ' since ', startTime);
   });
 })();
 </script>

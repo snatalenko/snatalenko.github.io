@@ -6,11 +6,11 @@ permalink: /reading.xml
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>{{ site.reading.title | xml_escape }}</title>
-    <link>{{ site.url }}/</link>
+    <link>{{ site.url }}</link>
     <description>{{ site.reading.description | xml_escape }}</description>
     <language>en</language>
     <atom:link href="{{ site.url }}/reading.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>{{ site.data.sitemap_meta.home_updated_at | date_to_rfc822 }}</lastBuildDate>
+    <lastBuildDate>{{ site.data.reading | where_exp: "article", "article.liked_at" | sort: "liked_at" | map: "liked_at" | last | date_to_rfc822 }}</lastBuildDate>
     {% for article in site.data.reading limit: site.reading.feed_limit %}
     <item>
       <title>{{ article.title | xml_escape }}</title>

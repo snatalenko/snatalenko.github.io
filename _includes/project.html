@@ -1,4 +1,6 @@
-<article class="entry">
+<article class="entry entry-with-logo">
+  {% include entity_logo.html name=include.project.name logo=include.project.logo url=include.project.url %}
+  <div class="entry-content">
   <header class="entry-head">
     <h3>{% if include.project.url %}{% include link.html href=include.project.url text=include.project.name %}{% else %}{{ include.project.name | escape }}{% endif %}</h3>
     <div class="entry-meta">{% include range.html start=include.project.startDate end=include.project.endDate %}</div>
@@ -10,5 +12,5 @@
   {% if project_sub_parts.size > 0 %}<p class="entry-sub">{{ project_sub_parts | join: " · " | escape }}</p>{% endif %}
   {% if include.project.description %}<p class="entry-desc">{{ include.project.description | escape }}</p>{% endif %}
   {% if include.project.keywords.size > 0 %}<p class="entry-tags">{{ include.project.keywords | join: " · " | escape }}</p>{% endif %}
+  </div>
 </article>
-

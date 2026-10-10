@@ -1,0 +1,4 @@
+{% if include.url %}<a class="entity-logo-link" href="{{ include.url | escape }}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">{% endif %}<span class="entity-logo{% if include.logo %} has-image{% endif %}" aria-hidden="true">
+  <span class="entity-logo-fallback">{{ include.name | slice: 0, 2 | upcase }}</span>
+  {% if include.logo %}<img src="{{ include.logo | escape }}" alt="" width="40" height="40" loading="lazy" decoding="async" onerror="this.hidden=true;this.parentElement.classList.add('logo-failed')">{% endif %}
+</span>{% if include.url %}</a>{% endif %}

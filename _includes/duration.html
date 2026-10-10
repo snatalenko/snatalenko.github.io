@@ -1,0 +1,5 @@
+{%- if include.start -%}
+<span class="duration" data-duration-start="{{ include.start | escape }}"{% if include.end %} data-duration-end="{{ include.end | escape }}"{% endif %}>{% include range.html start=include.start end=include.end %}</span>
+{%- else -%}
+{%- include range.html start=include.start end=include.end -%}
+{%- endif -%}

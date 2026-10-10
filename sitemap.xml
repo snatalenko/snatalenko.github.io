@@ -6,10 +6,10 @@ permalink: /sitemap.xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://natalenko.com</loc>
-    <lastmod>{{ site.data.sitemap_meta.home_updated_at | xml_escape }}</lastmod>
+    <lastmod>{{ site.data.reading | where_exp: "article", "article.liked_at" | sort: "liked_at" | map: "liked_at" | last | xml_escape }}</lastmod>
   </url>
   <url>
     <loc>https://natalenko.com/about/</loc>
-    <lastmod>{{ site.data.sitemap_meta.about_updated_at | xml_escape }}</lastmod>
+    <lastmod>{% assign about_page = site.pages | where: "url", "/about/" | first %}{{ about_page.last_modified_at | date: "%Y-%m-%d" }}</lastmod>
   </url>
 </urlset>

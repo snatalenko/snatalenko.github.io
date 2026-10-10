@@ -1,32 +1,57 @@
 {% assign resume = site.data.resume %}
 {% assign basics = resume.basics %}
 {% assign current_job = resume.work | first %}
-{% assign masters = nil %}
-{% for education in resume.education %}
-  {% assign study_type = education.studyType | downcase %}
-  {% if study_type contains "master" %}
-    {% assign masters = education %}
-    {% break %}
-  {% endif %}
-{% endfor %}
+{% assign skill_keywords = resume.skills | map: "keywords" | join: "|" | split: "|" | uniq %}
+{% assign institutions = resume.education | map: "institution" | uniq %}
+{% capture person_json %}{ {%- unless include.detailed == "about" %}
+    "@context": "https://schema.org",{% endunless %}
+    "@type": "Person",
+    "@id": {{ basics.url | append: "/#person" | jsonify }},
+    "name": {{ basics.name | jsonify }},
+    "url": {{ basics.url | jsonify }},
+    "image": {{ basics.image | jsonify }},
+    "sameAs": [{% for profile in basics.profiles %}{{ profile.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% if include.detailed == "about" and current_job.position %},
+    "jobTitle": {{ current_job.position | jsonify }}{% endif %}{% if include.detailed == "about" and current_job.name %},
+    "worksFor": {
+      "@type": "Organization",
+      "name": {{ current_job.name | jsonify }}{% if current_job.url %},
+      "url": {{ current_job.url | jsonify }}{% endif %}
+    }{% endif %}{% if include.detailed == "about" and institutions.size > 0 %},
+    "alumniOf": [{% for institution_name in institutions %}{% assign institution = resume.education | where: "institution", institution_name | first %}{
+      "@type": "CollegeOrUniversity",
+      "name": {{ institution_name | jsonify }}{% if institution.url %},
+      "url": {{ institution.url | jsonify }}{% endif %}
+    }{% unless forloop.last %}, {% endunless %}{% endfor %}],
+    "hasCredential": [{% for education in resume.education %}{
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "degree",
+      "name": {% if education.studyType and education.area %}{{ education.studyType | append: " in " | append: education.area | jsonify }}{% else %}{{ education.studyType | default: education.area | jsonify }}{% endif %},
+      "recognizedBy": {
+        "@type": "CollegeOrUniversity",
+        "name": {{ education.institution | jsonify }}
+      }
+    }{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endif %}{% if include.detailed == "about" and skill_keywords.size > 0 %},
+    "knowsAbout": {{ skill_keywords | jsonify }}{% endif %}{% if include.detailed == "about" and resume.languages.size > 0 %},
+    "knowsLanguage": {{ resume.languages | map: "language" | jsonify }}{% endif %}{% if basics.summary %},
+    "description": {{ basics.summary | jsonify }}{% endif %}
+  }{% endcapture %}
 <script type="application/ld+json">
+{% if include.detailed == "about" %}{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": {{ basics.url | append: "/about/" | jsonify }},
+  "name": {{ site.about.title | jsonify }}{% if page.last_modified_at %},
+  "dateModified": {{ page.last_modified_at | date: "%Y-%m-%d" | jsonify }}{% endif %},
+  "mainEntity": {{ person_json }}
+}{% else %}{{ person_json }}{% endif %}
+</script>
+{% unless include.detailed == "about" %}<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
+  "@type": "WebSite",
   "name": {{ basics.name | jsonify }},
+  "alternateName": {{ basics.url | remove_first: "https://" | jsonify }},
   "url": {{ basics.url | jsonify }},
-  "image": {{ basics.image | jsonify }},
-  "sameAs": [{% for profile in basics.profiles %}{{ profile.url | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% if include.detailed == "about" and current_job.position %},
-  "jobTitle": {{ current_job.position | jsonify }}{% endif %}{% if include.detailed == "about" and current_job.name %},
-  "worksFor": {
-    "@type": "Organization",
-    "name": {{ current_job.name | jsonify }}{% if current_job.url %},
-    "url": {{ current_job.url | jsonify }}{% endif %}
-  }{% endif %}{% if include.detailed == "about" and masters.institution %},
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": {{ masters.institution | jsonify }}
-  }{% endif %}{% if basics.summary %},
-  "description": {{ basics.summary | jsonify }}{% endif %}
+  "publisher": { "@id": {{ basics.url | append: "/#person" | jsonify }} }
 }
-</script>
+</script>{% endunless %}

@@ -3,18 +3,20 @@ layout: default
 page_kind: about
 nav: about
 show_duration: true
+last_modified_at: 2026-10-10
 ---
 {% assign resume = site.data.resume %}
 {% assign basics = resume.basics %}
 
 {% if basics %}
 <header class="header about-header">
-  {% if basics.image %}<img class="avatar" src="{{ basics.image | escape }}" alt="{{ basics.name | escape }}" width="88" height="88">{% endif %}
+  {% if basics.image %}<img class="avatar" src="{{ basics.image | remove_first: basics.url | escape }}" alt="{{ basics.name | escape }}" width="88" height="88">{% endif %}
   <div class="header-text">
     <h1>{{ basics.name | escape }}</h1>
     <p class="label">{{ basics.label | escape }}</p>
-    {% if basics.profiles.size > 0 %}<address class="contact">{% for profile in basics.profiles %}<span>{% capture profile_text %}{{ profile.network }}: {{ profile.username }}{% endcapture %}{% include link.html href=profile.url text=profile_text %}</span>{% endfor %}</address>{% endif %}
+    {% if basics.profiles.size > 0 %}<address class="contact">{% for profile in basics.profiles %}<span>{% capture profile_text %}{{ profile.network }}: {{ profile.username }}{% endcapture %}{% include link.html href=profile.url text=profile_text rel="me" %}</span>{% endfor %}</address>{% endif %}
   </div>
+  <img class="print-qr" src="/assets/qr-contact.svg" alt="" width="88" height="88" aria-hidden="true">
 </header>
 {% if basics.summary %}<p class="summary">{{ basics.summary | escape }}</p>{% endif %}
 {% endif %}
@@ -37,67 +39,53 @@ show_duration: true
 </section>
 {% endif %}
 
-{% if resume.work.size > 0 %}
+{% if resume.work.size > 0 or resume.education.size > 0 %}
 <section aria-labelledby="experience-h">
   <h2 id="experience-h">Experience</h2>
+  <ol class="timeline">
   {% assign work_groups = resume.work | group_by: "name" %}
   {% for work_group in work_groups %}
-    {% assign first_work = work_group.items | first %}
-    {% assign last_work = work_group.items | last %}
-    {% if work_group.items.size == 1 %}
-      {% assign work = first_work %}
+    {% assign company = work_group.items | first %}
+    {% for work in work_group.items %}
       {% assign has_more = false %}
-      {% if work.description or work.summary or work.highlights.size > 0 %}{% assign has_more = true %}{% endif %}
-<article class="entry">
-  <header class="entry-head">
-    <h3>{{ work_group.name | escape }}{% if work.position %} - {{ work.position | escape }}{% endif %}</h3>
-    <div class="entry-meta">{% include range.html start=work.startDate end=work.endDate %}{% if work.startDate %}<span class="duration" data-duration-start="{{ work.startDate | escape }}"{% if work.endDate %} data-duration-end="{{ work.endDate | escape }}"{% endif %}></span>{% endif %}</div>
-  </header>
-  {% if first_work.url or work.location or has_more %}<div class="entry-sub">{% if first_work.url %}{% assign company_text = first_work.url | replace: "https://", "" | replace: "http://", "" %}{% include link.html href=first_work.url text=company_text %}{% if work.location %} · {% endif %}{% endif %}{% if work.location %}{{ work.location | escape }}{% endif %}{% if has_more %}<details class="inline-more"><summary>{% if first_work.url or work.location %} · {% endif %}<span class="more-text">View more</span></summary><div class="entry-body">
-      {% if work.description %}<p class="entry-desc">{{ work.description | escape }}</p>{% endif %}
-      {% if work.summary %}<p class="entry-desc">{{ work.summary | escape }}</p>{% endif %}
-      {% if work.highlights.size > 0 %}<ul>{% for highlight in work.highlights %}<li>{{ highlight | escape }}</li>{% endfor %}</ul>{% endif %}
-    </div></details>{% endif %}</div>{% endif %}
-</article>
-    {% else %}
-<article class="entry">
-  <header class="entry-head">
-    <h3>{{ work_group.name | escape }}</h3>
-    <div class="entry-meta">{% include range.html start=last_work.startDate end=first_work.endDate %}{% if last_work.startDate %}<span class="duration" data-duration-start="{{ last_work.startDate | escape }}"{% if first_work.endDate %} data-duration-end="{{ first_work.endDate | escape }}"{% endif %}></span>{% endif %}</div>
-  </header>
-  <div class="entry-sub">{% if first_work.url %}{% assign company_text = first_work.url | replace: "https://", "" | replace: "http://", "" %}{% include link.html href=first_work.url text=company_text %}{% if first_work.location %} · {% endif %}{% endif %}{% if first_work.location %}{{ first_work.location | escape }}{% endif %}<details class="inline-more"><summary>{% if first_work.url or first_work.location %} · {% endif %}<span class="more-text">View more</span></summary><div class="entry-body">
-      {% if first_work.description %}<p class="entry-desc">{{ first_work.description | escape }}</p>{% endif %}
-      {% for work in work_group.items %}
-      <div class="position">
+      {% if forloop.first and company.description %}{% assign has_more = true %}{% endif %}
+      {% if work.summary or work.highlights.size > 0 %}{% assign has_more = true %}{% endif %}
+    <li class="timeline-item">
+      <div class="timeline-marker">{% if forloop.first %}{% include entity_logo.html name=work_group.name logo=company.logo url=company.url %}{% else %}<span class="timeline-dot" aria-hidden="true"></span>{% endif %}</div>
+      <article class="timeline-content">
         <header class="entry-head">
-          <h4>{{ work.position | escape }}</h4>
-          <div class="entry-meta">{% include range.html start=work.startDate end=work.endDate %}</div>
+          <div class="entry-meta">{% include duration.html start=work.startDate end=work.endDate %}</div>
+          <h3>{{ work.position | default: work_group.name | escape }}</h3>
         </header>
-        {% if work.summary %}<p class="entry-desc">{{ work.summary | escape }}</p>{% endif %}
-        {% if work.highlights.size > 0 %}<ul>{% for highlight in work.highlights %}<li>{{ highlight | escape }}</li>{% endfor %}</ul>{% endif %}
-      </div>
-      {% endfor %}
-    </div></details></div>
-</article>
-    {% endif %}
+        <div class="entry-sub"><span class="timeline-org">{% if company.url %}{% include link.html href=company.url text=work_group.name %}{% else %}{{ work_group.name | escape }}{% endif %}</span>{% if work.location %} · {{ work.location | escape }}{% endif %}</div>
+        {% if has_more %}<div class="entry-body">
+          {% if forloop.first and company.description %}<p class="entry-desc">{{ company.description | escape }}</p>{% endif %}
+          {% if work.summary %}<p class="entry-summary">{{ work.summary | escape }}</p>{% endif %}
+          {% if work.highlights.size > 0 %}<ul>{% for highlight in work.highlights %}<li>{{ highlight | escape }}</li>{% endfor %}</ul>{% endif %}
+        </div>{% endif %}
+      </article>
+    </li>
+    {% endfor %}
   {% endfor %}
-</section>
-{% endif %}
-
-{% if resume.education.size > 0 %}
-<section aria-labelledby="education-h">
-  <h2 id="education-h">Education</h2>
-  {% for education in resume.education %}
-    {% if education.studyType and education.area %}{% capture education_title %}{{ education.studyType }} in {{ education.area }}{% endcapture %}{% elsif education.studyType %}{% assign education_title = education.studyType %}{% elsif education.area %}{% assign education_title = education.area %}{% else %}{% assign education_title = education.institution %}{% endif %}
-<article class="entry">
-  <header class="entry-head">
-    <h3>{{ education_title | escape }}</h3>
-    <div class="entry-meta">{% include range.html start=education.startDate end=education.endDate %}</div>
-  </header>
-  {% if education.institution != education_title or education.score %}<p class="entry-sub">{% if education.institution != education_title %}{{ education.institution | escape }}{% if education.score %} · {% endif %}{% endif %}{% if education.score %}{{ education.score | escape }}{% endif %}</p>{% endif %}
-  {% if education.courses.size > 0 %}<ul>{% for course in education.courses %}<li>{{ course | escape }}</li>{% endfor %}</ul>{% endif %}
-</article>
+  {% assign education_groups = resume.education | group_by: "institution" %}
+  {% for education_group in education_groups %}
+    {% assign institution = education_group.items | first %}
+    {% for education in education_group.items %}
+      {% if education.studyType and education.area %}{% capture education_title %}{{ education.studyType }} in {{ education.area }}{% endcapture %}{% elsif education.studyType %}{% assign education_title = education.studyType %}{% elsif education.area %}{% assign education_title = education.area %}{% else %}{% assign education_title = education.institution %}{% endif %}
+    <li class="timeline-item">
+      <div class="timeline-marker">{% if forloop.first %}{% include entity_logo.html name=education_group.name logo=institution.logo url=institution.url %}{% else %}<span class="timeline-dot" aria-hidden="true"></span>{% endif %}</div>
+      <article class="timeline-content">
+        <header class="entry-head">
+          <div class="entry-meta">{% include duration.html start=education.startDate end=education.endDate %}</div>
+          <h3>{{ education_title | escape }}</h3>
+        </header>
+        {% if education.institution != education_title or education.score %}<div class="entry-sub">{% if education.institution != education_title %}<span class="timeline-org">{% if institution.url %}{% include link.html href=institution.url text=education.institution %}{% else %}{{ education.institution | escape }}{% endif %}</span>{% if education.score %} · {% endif %}{% endif %}{% if education.score %}{{ education.score | escape }}{% endif %}</div>{% endif %}
+        {% if education.courses.size > 0 %}<ul>{% for course in education.courses %}<li>{{ course | escape }}</li>{% endfor %}</ul>{% endif %}
+      </article>
+    </li>
+    {% endfor %}
   {% endfor %}
+  </ol>
 </section>
 {% endif %}
 
@@ -105,13 +93,16 @@ show_duration: true
 <section aria-labelledby="patents-h">
   <h2 id="patents-h">Patents &amp; Publications</h2>
   {% for publication in resume.publications %}
-<article class="entry">
+<article class="entry entry-with-logo">
+  {% if publication.patents.size > 1 %}{% include document_icon.html stack=true %}{% else %}{% include document_icon.html %}{% endif %}
+  <div class="entry-content">
   <header class="entry-head">
-    <h3>{% if publication.url %}{% include link.html href=publication.url text=publication.name %}{% else %}{{ publication.name | escape }}{% endif %}</h3>
+    <h3>{% if publication.url and publication.patents.size == 0 %}{% include link.html href=publication.url text=publication.name %}{% else %}{{ publication.name | escape }}{% endif %}</h3>
     <div class="entry-meta">{% include date.html value=publication.releaseDate %}</div>
   </header>
-  {% if publication.publisher %}<p class="entry-sub">{{ publication.publisher | escape }}</p>{% endif %}
-  {% if publication.summary %}<p class="entry-desc">{{ publication.summary | escape }}</p>{% endif %}
+  {% if publication.patents.size > 0 %}<p class="entry-sub">{% for patent in publication.patents %}{{ patent.office | escape }} {% include link.html href=patent.url text=patent.number %}{% if patent.status %} ({{ patent.status | escape }}){% endif %}{% unless forloop.last %} · {% endunless %}{% endfor %}{% if publication.summary %} · {{ publication.summary | escape }}{% endif %}</p>
+  {% elsif publication.publisher or publication.summary %}<p class="entry-sub">{% if publication.publisher %}{{ publication.publisher | escape }}{% if publication.summary %} · {% endif %}{% endif %}{% if publication.summary %}{{ publication.summary | escape }}{% endif %}</p>{% endif %}
+  </div>
 </article>
   {% endfor %}
 </section>
